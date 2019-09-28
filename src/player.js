@@ -1,5 +1,5 @@
 import React from 'react';
-import guy from './guy.gif'
+import guy from './resources/guy.gif'
 import styled, { keyframes } from 'styled-components';
 
 var basicGuy = styled.button`
