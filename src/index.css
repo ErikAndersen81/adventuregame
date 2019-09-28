@@ -11,7 +11,7 @@ body {
 }
 
 .fullScreen {
-    width:100vh;
+    width:100vw;
     height:100vh;
 }
 
@@ -19,14 +19,32 @@ body {
     background: #465;
     position: absolute;
     border: 0px;
-    height: 34px;
-    width: 34px;
-    border: 5px solid #333;
+    height: 31px;
+    width: 31px;
+    border: 1px solid #333;
+}
+
+.info {
+    position:fixed;
+    top:0;
+    right:0;
+    width:25vw;
+    display:grid;
+    grid-template-columns: auto auto;
+}
+
+.infoText {
+    grid-column:1/1;
+    color: #f51;
+}
+
+.infoItem {
+    grid-column:2/2;
 }
 
 .heart {
-    background: #0000;
-    position: absolute;
+    background-image: url('heart.gif');
+    position: static;
     border: 0px;
     height: 32px;
     width: 32px;
@@ -36,8 +54,8 @@ body {
     position: absolute;
     background-image:url('lock.gif');
     border: 0px;
-    height: 34px;
-    width: 34px;
+    height: 32px;
+    width: 32px;
 }
 
 .trap {
@@ -45,19 +63,21 @@ body {
     background-color: rgba(0,0,0,0);
     background-image:url('trap.gif');
     border: 0px;
-    height: 34px;
-    width: 34px;
+    height: 32px;
+    width: 32px;
+}
+
+.key {
+    position: absolute;
+    background-image:url('key.gif');
+    border: 0px;
+    height: 32px;
+    width: 32px;
 }
 
 .trapTriggered {
-    position: absolute;
-    background-color: rgba(0,0,0,0);
-    background-image:url('trap.gif');
     animation: trapHit 250ms steps(8) alternate;
     animation-delay: 125ms;
-    border: 0px;
-    height: 34px;
-    width: 34px;
 }
 
 @keyframes trapHit {

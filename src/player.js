@@ -1,6 +1,5 @@
 import React from 'react';
 import guy from './guy.gif'
-import heart from './heart.gif'
 import styled, { keyframes } from 'styled-components';
 
 var basicGuy = styled.button`
@@ -47,10 +46,25 @@ export function Player(props) {
     return <Guy />;
 }
 
-export function Health(props) {
+function Health(props) {
     var pos=[]
     for (var i=0; i<props.health; i++) {
 	pos.push(12+(i*35) + "px");
     }
-    return pos.map((p) => <img className="heart" src={heart} alt="heart" style={{ left:p,top:"400px"}} key={"heart "+p}/> );
+    const hearts = pos.map((p) => <img className="heart" alt="" key={"heart "+p} /> );
+    return hearts;
+}
+
+function Keys(props) {
+    const keys = props.keys.map( col => <img className="key" style={{ backgroundColor:col }} alt="" key={"key "+ col} /> );
+    return keys;
+}
+
+export function Info(props) {
+    return (<div className='info'>
+	    <p className='infoText' >{'Health:'}</p>,
+	    <div className='infoItem' > <Health health={props.health} /> </div>,
+	    <p className='infoText' >{'Keys:'}</p>,
+	    <div className='infoItem' > <Keys keys={props.keys} /> </div>,
+	    </div>)
 }

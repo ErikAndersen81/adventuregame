@@ -1,4 +1,4 @@
-export const blockSize = 34;
+export const blockSize = 32;
 
 export function translateBitmap(bitmap) {
     // The bitmap is an Array(32) of 32-bit Integers. 0 marks no block, 1 marks a block
