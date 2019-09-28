@@ -1,0 +1,74 @@
+import React from 'react';
+import './index.css';
+import coin from './coin.gif'
+import trap from './trap.gif'
+import styled, { keyframes } from 'styled-components';
+
+
+const coinSpin = keyframes`
+    0% {background-position-x: 0px;}
+    100% {background-position-x: 416px;}
+    `
+
+const trapHit = keyframes`
+    0% {background-position-x: 256px;}
+    100% {background-position-x: 0px;}
+    `
+
+const Base = styled.button`
+    position: absolute;
+    background-color: rgba(0,0,0,0);
+    border: 0px;
+    height: 34px;
+    width: 34px;
+    `
+
+function Trap(props) {
+    var Btn;
+    if (props.triggered) {
+	Btn = styled(Base)`
+        background-image: url(${trap});
+        left:${props.x}px;
+        top:${props.y}px;
+        animation: ${trapHit} 250ms steps(8) alternate;
+        animation-delay: 125ms;
+        `
+    } else {
+	Btn = styled(Base)`
+        background-image: url(${trap});
+        left:${props.x}px;
+        top:${props.y}px;
+        `
+    }
+    
+    return <Btn />;
+}
+
+
+
+function Coin(props) {
+    const Btn = styled(Base)`
+        background-image: url(${coin});
+        left:${props.x}px;
+        top:${props.y}px;
+        animation: ${coinSpin} 1s steps(13) infinite;
+        `
+    return <Btn />;
+}
+
+export function Traps(props) {
+    return props.traps.map((trap) =>
+			   <Trap className='trap' x={trap[0]} y={trap[1]} triggered={trap[3]} key={trap.toString()} /> );
+}
+
+export function Coins(props) {
+    return props.coins.map((coin) =>
+		     <Coin x={coin[0]} y={coin[1]} key={coin.toString()} /> );
+}
+
+export function Blocks(props) {
+    return props.blocks.map((block) =>
+			    <button className='block' style={{left:block[0], top:block[1]}} key={block.toString()} /> );
+}
+
+export default { Coins, Blocks };
