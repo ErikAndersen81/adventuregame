@@ -10,7 +10,7 @@ class Game extends React.Component {
 	super(props);
 	this.state = {
 	    playerPosX: 32,
-	    playerPosY: 256,
+	    playerPosY: 32,
 	    playerDirectionX: 0,
 	    playerDirectionY: 0,
 	    playerTargetPosX: 0,
@@ -44,7 +44,6 @@ class Game extends React.Component {
 	    .concat(this.traps)
 	    .concat(this.locks)
 	    .concat(this.keys);
-	
 	
 	this.handleClick = this.handleClick.bind(this);
 	this.move = this.move.bind(this);
@@ -100,18 +99,15 @@ class Game extends React.Component {
     move() {
 	const collidee = this.collisionDetect();
 	var health = this.state.playerHealth;
-	var lastMove = this.state.playerLastMove;
-	var moving = this.state.playerMoving;
-	if (lastMove) {
+	var x = this.state.playerDirectionX + this.state.playerPosX;
+	var y = this.state.playerDirectionY + this.state.playerPosY;
+	var lastMove =  x === this.state.playerTargetPosX && y === this.state.playerTargetPosY;
+	
+	if (this.state.playerLastMove) {
 	    this.setState({playerMoving:false, playerInitMove:false, playerLastMove:false});
 	    return;
 	}
-	const x = this.state.playerDirectionX + this.state.playerPosX;
-	const y = this.state.playerDirectionY + this.state.playerPosY;
-	if ( x === this.state.playerTargetPosX && y === this.state.playerTargetPosY ) {
-	    lastMove = true;
-	    moving = false;
-	}
+	
 	if (collidee) {
 	    switch (collidee.type) {
 	    case blockType.trap:
@@ -127,39 +123,22 @@ class Game extends React.Component {
 		if (match) {
 		    this.locks = this.locks.filter( k => k.color !== collidee.color );
 		    this.objects = this.objects.filter( k => k.color !== collidee.color);
-		} else {
-		    moving = false;
+		    break;
 		}
-		break;
+		// fall-through to default behaviour (i.e. solid block) if no match
 	    default:
-		moving = false;
+		x = this.state.playerPosX;
+		y = this.state.playerPosY;
+		lastMove = true;
 	    }
 	}
-	if (lastMove) {
-	    this.setState({
+	this.setState({
 		playerPosX:x,
 		playerPosY:y,
 		playerInitMove:false,
-		playerLastMove:true,
+		playerLastMove:lastMove,
 		playerMoving:true,
 		playerHealth:health});
-	}
-	else if (moving && !lastMove ) {
-	    this.setState({
-		playerPosX:x,
-		playerPosY:y,
-		playerInitMove:false,
-		playerLastMove:false,
-		playerMoving:true,
-		playerHealth:health});
-	} else {
-	    console.log("special case");
-	    this.setState({
-		playerInitMove:false,
-		playerLastMove:false,
-		playerMoving:false,
-		playerHealth:health});
-	}
 	// reset any triggered traps
 	this.traps.forEach((trap, idx , arr) => trap.triggered=false);
     }

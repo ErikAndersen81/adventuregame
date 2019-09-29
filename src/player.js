@@ -12,7 +12,6 @@ export function Player(props) {
     	left:props.posX + "px",
     	top:props.posY + "px"
     }} />;
-    console.table(props);
     return Guy;
 }
 
