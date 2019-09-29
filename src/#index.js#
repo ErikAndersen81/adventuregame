@@ -110,7 +110,6 @@ class Game extends React.Component {
 	const y = this.state.playerDirectionY + this.state.playerPosY;
 	if ( x === this.state.playerTargetPosX && y === this.state.playerTargetPosY ) {
 	    lastMove = true;
-	    moving = false;
 	}
 	if (collidee) {
 	    switch (collidee.type) {

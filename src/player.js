@@ -6,9 +6,9 @@ export function Player(props) {
     else if (props.deltaX<0) { animation += 'guyFacingLeft '; }
     else if (props.deltaY<0) { animation += 'guyFacingDown '; }
     else if (props.deltaY>0) { animation += 'guyFacingUp '; };
-    if (!props.lastMove && props.deltaX+props.deltaY !==0 ) {animation += 'guyMoving';}
-    else if (!props.moving && props.lastMove) {animation += 'guyLastMove';}
-    var Guy = <button id="guy" className={animation} alt="" style={{
+    if (!props.lastMove && !props.moving) {animation += 'guyLastMove';}
+    else if ( props.moving ) {animation += 'guyMoving';}
+    var Guy = <button className={animation} alt="" style={{
     	left:props.posX + "px",
     	top:props.posY + "px"
     }} />;

@@ -49,8 +49,7 @@ body {
 }
 
 .guyLastMove {
-    animation: animateGuy 0.3s steps(4) 2;
-    animation-delay:0.3s;
+    animation: animateGuy 0.3s steps(4);
 }
 
 @keyframes animateGuy {
