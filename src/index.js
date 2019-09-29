@@ -97,6 +97,7 @@ class Game extends React.Component {
 	    if (x === x1 && y === y1) {
 		this.setState({
 		    playerMoving:false})
+		setTimeout(this.move, 300);
 		return;
 	    } else {
 		setTimeout(this.move, 300);
@@ -122,20 +123,27 @@ class Game extends React.Component {
 		if (match) {
 		    this.locks = this.locks.filter( k => k.color !== collidee.color );
 		    this.objects = this.objects.filter( k => k.color !== collidee.color);
-		} else { return;}
+		} 
 		break;
 	    default:
-		return;
+		
 	    }
+	    this.setState({
+		playerLastMove:true});
+	    return
 	}
-	if (this.state.playerDirectionX !== 0 || this.state.playerDirectionY !== 0 ) {
+	if (this.state.playerMoving) {
 	    const x = this.state.playerDirectionX + this.state.playerPosX;
 	    const y = this.state.playerDirectionY + this.state.playerPosY;
 	    this.setState({
 		playerPosX:x,
 		playerPosY:y,
 		playerInitMove:false,
+		playerLastMove:false,
 		playerHealth:health});
+	} else {
+	    this.setState({
+		playerLastMove:true});
 	}
 	// reset any triggered traps
 	this.traps.forEach((trap, idx , arr) => trap.triggered=false);
@@ -160,6 +168,7 @@ class Game extends React.Component {
 	    posX={this.state.playerPosX}
 	    posY={this.state.playerPosY}
 	    initialMove={this.state.playerInitMove}
+	    lastMove={this.state.playerLastMove}
 	    moving={this.state.playerMoving}
 	    deltaX={this.state.playerDirectionX}
 	    deltaY={this.state.playerDirectionY}

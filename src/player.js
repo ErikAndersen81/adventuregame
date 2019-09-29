@@ -1,19 +1,18 @@
 import React from 'react';
 
 export function Player(props) {
-    const deltaX = props.deltaX;
-    const deltaY = props.deltaY;
     var animation='guy ';
-    if (deltaX>0) { animation += 'guyFacingRight '; }
-    else if (deltaX<0) { animation += 'guyFacingLeft '; }
-    else if (deltaY<0) { animation += 'guyFacingDown '; }
-    else if (deltaY>0) { animation += 'guyFacingUp '; };
-    if (props.moving && !props.initialMove ) {animation += 'guyMoving';}
-    else if (!props.moving && !props.initialMove && deltaX+deltaY !== 0) {animation += 'guyLastMove';}
-    var Guy = <button className={animation} alt="" style={{
-    	    left:props.posX + "px",
-    	    top:props.posY + "px"
-    	}} />
+    if (props.deltaX>0) { animation += 'guyFacingRight '; }
+    else if (props.deltaX<0) { animation += 'guyFacingLeft '; }
+    else if (props.deltaY<0) { animation += 'guyFacingDown '; }
+    else if (props.deltaY>0) { animation += 'guyFacingUp '; };
+    if (!props.lastMove && props.deltaX+props.deltaY !==0 ) {animation += 'guyMoving';}
+    else if (!props.moving && props.lastMove) {animation += 'guyLastMove';}
+    var Guy = <button id="guy" className={animation} alt="" style={{
+    	left:props.posX + "px",
+    	top:props.posY + "px"
+    }} />;
+    console.table(props);
     return Guy;
 }
 

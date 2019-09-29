@@ -49,17 +49,13 @@ body {
 }
 
 .guyLastMove {
-    animation: animateGuy 0.3s steps(4);
+    animation: animateGuy 0.3s steps(4) 2;
+    animation-delay:0.3s;
 }
 
 @keyframes animateGuy {
     100% {background-position-x:128px; }
 }
-
-@-webkit-keyframes animateGuy {
-    100% {-webkit-background-position-x:128px; }
-}
-
 
 .block {
     background: #465;
