@@ -5,17 +5,18 @@ import {Info, Player} from './player.js'
 import {Locks, Keys, Traps, Blocks} from './world.js'
 import {translateBitmap, blockSize, blockType} from './utility.js';
 
-// Todo: fix player facing down before every move
-
-
 class Game extends React.Component {
     constructor(props) {
 	super(props);
 	this.state = {
-	    playerPos: [32,32],
-	    playerDirection: [0,0],
-	    playerTargetPos: [0,0],
+	    playerPosX: 32,
+	    playerPosY: 256,
+	    playerDirectionX: 0,
+	    playerDirectionY: 0,
+	    playerTargetPosX: 0,
+	    playerTargetPosY: 0,
 	    playerMoving: false,
+	    playerInitMove: false,
 	    playerHealth:3
 	};
 	
@@ -50,35 +51,37 @@ class Game extends React.Component {
 
     handleClick (event) {
 	if (this.state.playerMoving) {
-	    this.setState({playerTargetPos:this.state.playerPos});
+	    this.setState({playerTargetPosX:this.state.playerPosX, playerTargetPosY:this.state.playerPosY });
 	    return;
 	}
-	const deltaX = this.state.playerPos[0] - event.clientX;
-	const deltaY = this.state.playerPos[1] - event.clientY;
+	const deltaX = this.state.playerPosX + 0.5*blockSize - event.clientX;
+	const deltaY = this.state.playerPosY + 0.5*blockSize - event.clientY;
 	var direction;
 	var target;
 	if (Math.abs(deltaX) < Math.abs(deltaY)) {
 	    if (deltaY < 0) {
-		target = [this.state.playerPos[0], Math.floor(event.clientY/blockSize) * blockSize];
+		target = [this.state.playerPosX, Math.floor(event.clientY/blockSize) * blockSize];
 		direction = [0,32];
 	    } else {
-		target = [this.state.playerPos[0], Math.floor(event.clientY/blockSize) * blockSize];
+		target = [this.state.playerPosX, Math.floor(event.clientY/blockSize) * blockSize];
 		direction = [0,-32];
 	    }
 	} else {
 	    if (deltaX < 0) {
-		target = [Math.floor(event.clientX/blockSize) * blockSize, this.state.playerPos[1]]
+		target = [Math.floor(event.clientX/blockSize) * blockSize, this.state.playerPosY]
 		direction = [32,0];
 	    } else {
-		target = [Math.floor(event.clientX/blockSize) * blockSize, this.state.playerPos[1] ]
+		target = [Math.floor(event.clientX/blockSize) * blockSize , this.state.playerPosY ]
 		direction = [-32,0];
 	    }
 	}
 	this.setState({
 	    playerMoving:true,
 	    playerInitMove:true,
-	    playerDirection:direction,
-	    playerTargetPos:target});
+	    playerDirectionX:direction[0],
+	    playerDirectionY:direction[1],
+	    playerTargetPosX:target[0],
+	    playerTargetPosY:target[1]});
     }
     
     componentDidUpdate() {
@@ -87,12 +90,13 @@ class Game extends React.Component {
 	    return;
 	}
 	if (this.state.playerMoving) {
-	    const x = this.state.playerPos[0];
-	    const y = this.state.playerPos[1];
-	    const x1 = this.state.playerTargetPos[0];
-	    const y1 = this.state.playerTargetPos[1];
+	    const x = this.state.playerPosX;
+	    const y = this.state.playerPosY;
+	    const x1 = this.state.playerTargetPosX;
+	    const y1 = this.state.playerTargetPosY;
 	    if (x === x1 && y === y1) {
-		this.setState({playerMoving:false})
+		this.setState({
+		    playerMoving:false})
 		return;
 	    } else {
 		setTimeout(this.move, 300);
@@ -124,9 +128,12 @@ class Game extends React.Component {
 		return;
 	    }
 	}
-	if (this.state.playerDirection[0] !== 0 || this.state.playerDirection[1] !== 0 ) {
+	if (this.state.playerDirectionX !== 0 || this.state.playerDirectionY !== 0 ) {
+	    const x = this.state.playerDirectionX + this.state.playerPosX;
+	    const y = this.state.playerDirectionY + this.state.playerPosY;
 	    this.setState({
-		playerPos:[this.state.playerPos[0]+this.state.playerDirection[0], this.state.playerPos[1]+this.state.playerDirection[1]],
+		playerPosX:x,
+		playerPosY:y,
 		playerInitMove:false,
 		playerHealth:health});
 	}
@@ -135,10 +142,11 @@ class Game extends React.Component {
     }
     
     collisionDetect() {
-	const pos = this.state.playerPos;
-	const deltaX = this.state.playerDirection[0];
-	const deltaY = this.state.playerDirection[1];
-	const newPos = [pos[0]+deltaX,pos[1]+deltaY];
+	const posX = this.state.playerPosX;
+	const posY = this.state.playerPosY;
+	const deltaX = this.state.playerDirectionX;
+	const deltaY = this.state.playerDirectionY;
+	const newPos = [posX+deltaX,posY+deltaY];
 	
 	const collidee = this.objects.find(function(block) { return block.x === newPos[0] && block.y === newPos[1];});
 	return collidee;
@@ -149,10 +157,12 @@ class Game extends React.Component {
 		<div className='fullScreen' onClick={this.handleClick}>
 		<Blocks blocks={this.blocks} />,
 		<Player
-	    pos={this.state.playerPos}
+	    posX={this.state.playerPosX}
+	    posY={this.state.playerPosY}
 	    initialMove={this.state.playerInitMove}
-	    deltaX={this.state.playerDirection[0]}
-	    deltaY={this.state.playerDirection[1]}
+	    moving={this.state.playerMoving}
+	    deltaX={this.state.playerDirectionX}
+	    deltaY={this.state.playerDirectionY}
 	        />,
 	    	<Traps traps={this.traps} />,
 		<Locks locks={this.locks} />,
