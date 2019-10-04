@@ -56,14 +56,15 @@ class Game extends React.Component {
 	this.locks = [
 	    {x:96, y:128, color:'pink', type:blockType.lock},
 	    {x:352,y:128, color:'orange', type:blockType.lock},
+	    {x:224,y:288, color:'pink', type:blockType.lock},
 	    {x:352,y:288, color:'green', type:blockType.lock},
 	];
 	
 	this.keys = [
 	    {x:128, y:32, color:'pink', type:blockType.key},
-	    {x:128, y:64, color:'red', type:blockType.key},
 	    {x:32, y:256, color:'orange', type:blockType.key},
-		    ]
+	    {x:224, y:64, color:'red', type:blockType.key},
+	]
 	
 	this.playerKeys = [];
 	this.objects = this.blocks
@@ -150,8 +151,7 @@ class Game extends React.Component {
 	    case blockType.lock:
 		const match = this.playerKeys.find( k => k === collidee.color );
 		if (match) {
-		    this.locks = this.locks.filter( k => k.color !== collidee.color );
-		    this.objects = this.objects.filter( k => k.color !== collidee.color);
+		    this.locks = this.locks.filter( lock => lock.x !== collidee.x || lock.y !== collidee.y);
 		    break;
 		}
 		// fall-through to default behaviour (i.e. solid block) if no match
