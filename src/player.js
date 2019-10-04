@@ -25,7 +25,7 @@ function Health(props) {
 }
 
 function Keys(props) {
-    const keys = props.keys.map( col => <button className={"mapObject " + col + "Key" } key={"key "+ col} /> );
+    const keys = props.keys.map( col => <button className={"key " + col + "Key" } key={"key "+ col} /> );
     return keys;
 }
 

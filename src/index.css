@@ -21,6 +21,7 @@ body {
 /* General block. Inherited by every object on the map */
 .mapObject {
     position: absolute;
+    outline:none;
     background-color: rgba(0,0,0,0);
     border: 0;
     height: 32px;
@@ -138,6 +139,15 @@ body {
 .infoItem {
     grid-column:2/2;
 }
+
+.key {
+    background-color: rgba(0,0,0,0);
+    border:0;
+    width:32px;
+    height:32px;
+    position: static;
+}
+
 .heart {
     background-image: url('resources/heart.gif');
     background-color: rgba(0,0,0,0);
