@@ -35,13 +35,6 @@ export class Blocks extends React.Component {
     }
 }
 
-    
-
-// export function Blocks(props) {
-//     return props.blocks.map((block) =>
-// 	<button className='mapObject block' style={{left:block.x, top:block.y}} key={block.x +","+block.y} /> );
-// }
-
 export function Locks(props) {
     return props.locks.map( (lock) =>
 			    <button className={'mapObject  ' + lock.color +'Lock'} style={{left:lock.x, top:lock.y}} key={lock.x +","+lock.y} />
