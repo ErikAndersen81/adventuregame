@@ -146,7 +146,8 @@ class Game extends React.Component {
 		break;
 	    case blockType.key:
 		this.playerKeys.push(collidee.color);
-		this.keys=this.keys.filter( k => k.color !== collidee.color );		
+		this.keys=this.keys.filter( k => k.color !== collidee.color );
+		this.objects = this.objects.filter(obj => obj.x !== collidee.x || obj.y !== collidee.y );
 		break;
 	    case blockType.lock:
 		const match = this.playerKeys.find( k => k === collidee.color );
