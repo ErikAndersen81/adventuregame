@@ -1,5 +1,6 @@
 import React from 'react';
 import './index.css';
+import wall from './resources/wall.png';
 
 export function Traps(props) {
     return props.traps.map(function(trap) {
@@ -11,10 +12,35 @@ export function Traps(props) {
     })
 }
 
-export function Blocks(props) {
-    return props.blocks.map((block) =>
-	<button className='mapObject block' style={{left:block.x, top:block.y}} key={block.x +","+block.y} /> );
+export class Blocks extends React.Component {
+    constructor(props) {
+	super(props);
+	this.blocks = props.blocks;
+    }
+
+    componentDidMount() {
+	const canvas = this.refs.canvas;
+	const ctx = canvas.getContext("2d");
+	const img = this.refs.image;
+	this.blocks.forEach(b => ctx.drawImage(img, b.x, b.y));
+    }
+    
+    render() {
+	return(
+		<div>
+		<canvas ref="canvas" width={1024} height={425} />
+		<img ref="image" src={wall} style={{opacity:0}} />
+		</div>
+	)
+    }
 }
+
+    
+
+// export function Blocks(props) {
+//     return props.blocks.map((block) =>
+// 	<button className='mapObject block' style={{left:block.x, top:block.y}} key={block.x +","+block.y} /> );
+// }
 
 export function Locks(props) {
     return props.locks.map( (lock) =>
