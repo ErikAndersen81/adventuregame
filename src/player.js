@@ -1,7 +1,7 @@
 import React from 'react';
 
 export function Player(props) {
-    var animation='guy ';
+    var animation='mapObject guy ';
     if (props.deltaX>0) { animation += 'guyFacingRight '; }
     else if (props.deltaX<0) { animation += 'guyFacingLeft '; }
     else if (props.deltaY<0) { animation += 'guyFacingDown '; }
@@ -25,7 +25,7 @@ function Health(props) {
 }
 
 function Keys(props) {
-    const keys = props.keys.map( col => <button className={"key " + col + "Key" } key={"key "+ col} /> );
+    const keys = props.keys.map( col => <button className={"mapObject " + col + "Key" } key={"key "+ col} /> );
     return keys;
 }
 

@@ -15,102 +15,54 @@ body {
     height:100vh;
 }
 
-/* ============================ Player ========================= */
 
+/* ============================ Map ========================= */
+
+/* General block. Inherited by every object on the map */
+.mapObject {
+    position: absolute;
+    background-color: rgba(0,0,0,0);
+    border: 0;
+    height: 32px;
+    width: 32px;
+}
 
 /* Player Representation */
 
 .guy {
-    background-color: rgba(0,0,0,0);
     background-image: url('resources/guy.gif');
     transition-property: left, top;
     transition-duration: 0.3s;
     transition-timing-function: linear;
-    position: absolute;
-    border: 0;
-    outline: 0px;
-    height: 32px;
-    width: 32px;
 }
-
 .guyFacingLeft {
     background-position-y: 96px;
 }
-
 .guyFacingRight {
     background-position-y: 32px;
 }
-
 .guyFacingUp {
     background-position-y: 0px;
 }
-
 .guyFacingDown {
     background-position-y: 64px;
 }
-
 .guyMoving {
     animation: animateGuy 0.3s steps(4) infinite;
 }
-
 .guyLastMove {
     animation: animateGuy 0.3s steps(4);
 }
-
 @keyframes animateGuy {
     100% {background-position-x:128px; }
 }
 
-
-/* Player Info */
-
-.info {
-    position:fixed;
-    top:0;
-    right:0;
-    width:25vw;
-    display:grid;
-    grid-template-columns: auto auto;
-}
-
-.infoText {
-    grid-column:1/1;
-    color: #f51;
-}
-
-.infoItem {
-    grid-column:2/2;
-}
-
-.heart {
-    background-image: url('resources/heart.gif');
-    background-color: rgba(0,0,0,0);
-    position: static;
-    border: 0px;
-    height: 32px;
-    width: 32px;
-}
-
-
-/* =========================  World  ============================== */
-
+/* wall */
 .block {
-    background: #465;
-    position: absolute;
-    border: 0;
-    height: 32px;
-    width: 32px;
     background-image:url('resources/wall.png')
 }
 
 /* Keys */
-.key {
-    position: absolute;
-    background-color: rgba(0,0,0,0);
-    border: 0;
-    height: 32px;
-    width: 32px;
-}
 .blueKey {
     background-image:url('resources/blueKey.gif');
 }
@@ -134,13 +86,6 @@ body {
 }
 
 /* Locks */
-.lock {
-    position: absolute;
-    background-color: rgba(0,0,0,0);
-    border: 0;
-    height: 32px;
-    width: 32px;
-}
 .blueLock {
     background-image:url('resources/blueLock.png');
 }
@@ -163,15 +108,9 @@ body {
     background-image:url('resources/blackLock.png');
 }
 
-
 /* Traps */
 .trap {
-    position: absolute;
-    background-color: rgba(0,0,0,0);
     background-image:url('resources/trap.gif');
-    border: 0;
-    height: 32px;
-    width: 32px;
 }
 .trapTriggered {
     animation: trapHit 250ms steps(8) alternate;
@@ -180,4 +119,30 @@ body {
 @keyframes trapHit {
     0% {background-position-x: 256px;}
     100% {background-position-x: 0px;}
+}
+
+
+/* =========== Player Info ============= */
+.info {
+    position:fixed;
+    top:0;
+    right:0;
+    width:25vw;
+    display:grid;
+    grid-template-columns: auto auto;
+}
+.infoText {
+    grid-column:1/1;
+    color: #f51;
+}
+.infoItem {
+    grid-column:2/2;
+}
+.heart {
+    background-image: url('resources/heart.gif');
+    background-color: rgba(0,0,0,0);
+    border:0;
+    width:32px;
+    height:32px;
+    position: static;
 }
