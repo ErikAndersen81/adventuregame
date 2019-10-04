@@ -15,6 +15,11 @@ body {
     height:100vh;
 }
 
+/* ============================ Player ========================= */
+
+
+/* Player Representation */
+
 .guy {
     background-color: rgba(0,0,0,0);
     background-image: url('resources/guy.gif');
@@ -22,7 +27,7 @@ body {
     transition-duration: 0.3s;
     transition-timing-function: linear;
     position: absolute;
-    border: 0px;
+    border: 0;
     outline: 0px;
     height: 32px;
     width: 32px;
@@ -56,14 +61,8 @@ body {
     100% {background-position-x:128px; }
 }
 
-.block {
-    background: #465;
-    position: absolute;
-    border: 0px;
-    height: 31px;
-    width: 31px;
-    border: 1px solid #333;
-}
+
+/* Player Info */
 
 .info {
     position:fixed;
@@ -85,36 +84,109 @@ body {
 
 .heart {
     background-image: url('resources/heart.gif');
+    background-color: rgba(0,0,0,0);
     position: static;
     border: 0px;
     height: 32px;
     width: 32px;
 }
 
-.lock {
+
+/* =========================  World  ============================== */
+
+.block {
+    background: #465;
     position: absolute;
-    background-image:url('resources/lock.gif');
-    border: 0px;
+    border: 0;
     height: 32px;
     width: 32px;
+    background-image:url('resources/wall.png')
 }
 
 .trap {
     position: absolute;
     background-color: rgba(0,0,0,0);
     background-image:url('resources/trap.gif');
-    border: 0px;
+    border: 0;
     height: 32px;
     width: 32px;
 }
 
+/* Locks and Keys */
+
 .key {
     position: absolute;
-    background-image:url('resources/key.gif');
-    border: 0px;
+    background-color: rgba(0,0,0,0);
+    border: 0;
     height: 32px;
     width: 32px;
 }
+
+.blueKey {
+    background-image:url('resources/blueKey.gif');
+}
+
+.redKey {
+    background-image:url('resources/redKey.gif');
+}
+
+.yellowKey {
+    background-image:url('resources/yellowKey.gif');
+}
+
+.orangeKey {
+    background-image:url('resources/orangeKey.gif');
+}
+
+.pinkKey {
+    background-image:url('resources/pinkKey.gif');
+}
+
+.greenKey {
+    background-image:url('resources/greenKey.gif');
+}
+
+.blackKey {
+    background-image:url('resources/blackKey.gif');
+}
+
+
+.lock {
+    position: absolute;
+    background-color: rgba(0,0,0,0);
+    border: 0;
+    height: 32px;
+    width: 32px;
+}
+
+.blueLock {
+    background-image:url('resources/blueLock.png');
+}
+
+.redLock {
+    background-image:url('resources/redLock.png');
+}
+
+.yellowLock {
+    background-image:url('resources/yellowLock.png');
+}
+
+.orangeLock {
+    background-image:url('resources/orangeLock.png');
+}
+
+.pinkLock {
+    background-image:url('resources/pinkLock.png');
+}
+
+.greenLock {
+    background-image:url('resources/greenLock.png');
+}
+
+.blackLock {
+    background-image:url('resources/blackLock.png');
+}
+
 
 .trapTriggered {
     animation: trapHit 250ms steps(8) alternate;

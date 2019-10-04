@@ -13,18 +13,18 @@ export function Traps(props) {
 
 export function Blocks(props) {
     return props.blocks.map((block) =>
-	<img className='block' alt="" style={{left:block.x, top:block.y}} key={block.x +","+block.y} /> );
+	<button className='block' style={{left:block.x, top:block.y}} key={block.x +","+block.y} /> );
 }
 
 export function Locks(props) {
     return props.locks.map( (lock) =>
-	<button className='lock' style={{left:lock.x, top:lock.y, backgroundColor:lock.color}} key={lock.x +","+lock.y} />
+			    <button className={'lock ' + lock.color +'Lock'} style={{left:lock.x, top:lock.y}} key={lock.x +","+lock.y} />
     );
 }
 
 export function Keys(props) {  
     return props.keys.map( (key) =>
-	<button className='key' style={{left:key.x, top:key.y, backgroundColor:key.color}} key={key.x +","+key.y} />);
+			   <button className={'key ' + key.color +'Key' } style={{left:key.x, top:key.y}} key={key.x +","+key.y} />);
 }
 
 

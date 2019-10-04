@@ -20,12 +20,12 @@ function Health(props) {
     for (var i=0; i<props.health; i++) {
 	pos.push(12+(i*35) + "px");
     }
-    const hearts = pos.map((p) => <img className="heart" alt="" key={"heart "+p} /> );
+    const hearts = pos.map((p) => <button className="heart" alt="" key={"heart "+p} /> );
     return hearts;
 }
 
 function Keys(props) {
-    const keys = props.keys.map( col => <img className="key" style={{ backgroundColor:col }} alt="" key={"key "+ col} /> );
+    const keys = props.keys.map( col => <button className={"key " + col + "Key" } key={"key "+ col} /> );
     return keys;
 }
 

@@ -22,23 +22,26 @@ class Game extends React.Component {
 	};
 	
 	this.blocks = translateBitmap([0xffffffff,
-					0x84000001,
-					0x84000001,
-					0x84000001,
-					0xee000001,
-					0x80000001,
-					0xff000001,
-					0x80000001,
-					0x80000001,
-					0x80000001,
-					0x80000001,
+					0x844081c1,
+					0x840efe61,
+					0x84448141,
+					0xeeee8111,
+					0x8044bf71,
+					0xbf748041,
+					0x8114eee1,
+					0x81448441,
+					0x806c8401,
+					0x81c08441,
 					0xffffffff]);
 
 	this.traps = [
+	    {x:224,y:128, triggered:false, type:blockType.trap},
+	    {x:288,y:64, triggered:false, type:blockType.trap},
+	    {x:32,y:192, triggered:false, type:blockType.trap},
 	    {x:32,y:64, triggered:false, type:blockType.trap}
 	];
-	this.locks = [{x:96, y:128, color:'rgba(0,0,255,255)', type:blockType.lock}];
-	this.keys = [{x:128, y:32, color:'rgba(0,0,255,255)', type:blockType.key}]
+	this.locks = [{x:96, y:128, color:'pink', type:blockType.lock}];
+	this.keys = [{x:128, y:32, color:'pink', type:blockType.key}]
 	this.playerKeys = [];
 	this.objects = this.blocks
 	    .concat(this.traps)
