@@ -22,26 +22,49 @@ class Game extends React.Component {
 	};
 	
 	this.blocks = translateBitmap([0xffffffff,
-					0x844081c1,
-					0x840efe61,
-					0x84448141,
-					0xeeee8111,
-					0x8044bf71,
-					0xbf748041,
-					0x8114eee1,
-					0x81448441,
-					0x806c8401,
-					0x81c08441,
+					0x84400381,
+					0x840ef601,
+					0x84442281,
+					0xeeefa881,
+					0x80442efd,
+					0xbf742201,
+					0x8115f777,
+					0x81442221,
+					0x806f7021,
+					0x81c00221,
 					0xffffffff]);
 
 	this.traps = [
-	    {x:224,y:128, triggered:false, type:blockType.trap},
 	    {x:288,y:64, triggered:false, type:blockType.trap},
+	    {x:640,y:64, triggered:false, type:blockType.trap},
+	    {x:768,y:64, triggered:false, type:blockType.trap},
+	    
+	    {x:224,y:128, triggered:false, type:blockType.trap},
+	    
+	    {x:544,y:128, triggered:false, type:blockType.trap},
+	    
 	    {x:32,y:192, triggered:false, type:blockType.trap},
-	    {x:32,y:64, triggered:false, type:blockType.trap}
+	    
+	    {x:640,y:224, triggered:false, type:blockType.trap},
+	    {x:768,y:224, triggered:false, type:blockType.trap},
+	    {x:896,y:224, triggered:false, type:blockType.trap},
+	    
+	    {x:960,y:160, triggered:false, type:blockType.trap},
+	    
 	];
-	this.locks = [{x:96, y:128, color:'pink', type:blockType.lock}];
-	this.keys = [{x:128, y:32, color:'pink', type:blockType.key}]
+	
+	this.locks = [
+	    {x:96, y:128, color:'pink', type:blockType.lock},
+	    {x:352,y:128, color:'orange', type:blockType.lock},
+	    {x:352,y:288, color:'green', type:blockType.lock},
+	];
+	
+	this.keys = [
+	    {x:128, y:32, color:'pink', type:blockType.key},
+	    {x:128, y:64, color:'red', type:blockType.key},
+	    {x:32, y:256, color:'orange', type:blockType.key},
+		    ]
+	
 	this.playerKeys = [];
 	this.objects = this.blocks
 	    .concat(this.traps)
@@ -89,6 +112,7 @@ class Game extends React.Component {
     componentDidUpdate() {
 	// reset any triggered traps
 	this.traps.forEach((trap, idx , arr) => trap.triggered=false);
+	
 	if (this.state.playerHealth === 0) {
 	    alert("Game Over!");
 	    return;
