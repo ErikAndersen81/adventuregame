@@ -58,11 +58,6 @@ body {
     100% {background-position-x:128px; }
 }
 
-/* wall */
-.block {
-    background-image:url('resources/wall.png')
-}
-
 /* Keys */
 .blueKey {
     background-image:url('resources/blueKey.gif');
