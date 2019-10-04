@@ -163,7 +163,6 @@ body {
     background-image:url('resources/blackLock.png');
 }
 
-
 /* Traps */
 .trap {
     position: absolute;

@@ -87,6 +87,8 @@ class Game extends React.Component {
     }
     
     componentDidUpdate() {
+	// reset any triggered traps
+	this.traps.forEach((trap, idx , arr) => trap.triggered=false);
 	if (this.state.playerHealth === 0) {
 	    alert("Game Over!");
 	    return;
@@ -142,8 +144,6 @@ class Game extends React.Component {
 		playerLastMove:lastMove,
 		playerMoving:true,
 		playerHealth:health});
-	// reset any triggered traps
-	this.traps.forEach((trap, idx , arr) => trap.triggered=false);
     }
     
     collisionDetect() {
