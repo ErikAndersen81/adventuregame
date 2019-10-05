@@ -4,67 +4,17 @@ import './index.css';
 import {Info, Player} from './player.js'
 import {Locks, Keys, Traps, Blocks} from './world.js'
 import {translateBitmap, blockSize, blockType} from './utility.js';
+import {lvl1} from './levels.js'
 
 class Game extends React.Component {
     constructor(props) {
 	super(props);
-	this.state = {
-	    playerPosX: 32,
-	    playerPosY: 32,
-	    playerDirectionX: 0,
-	    playerDirectionY: 0,
-	    playerTargetPosX: 0,
-	    playerTargetPosY: 0,
-	    playerMoving: false,
-	    playerInitMove: false,
-	    playerLastMove: false,
-	    playerHealth:3
-	};
-	
-	this.blocks = translateBitmap([0xffffffff,
-					0x84400381,
-					0x840ef601,
-					0x84442281,
-					0xeeefa881,
-					0x80442efd,
-					0xbf742201,
-					0x8115f777,
-					0x81442221,
-					0x806f7021,
-					0x81c00221,
-					0xffffffff]);
-
-	this.traps = [
-	    {x:288,y:64, triggered:false, type:blockType.trap},
-	    {x:640,y:64, triggered:false, type:blockType.trap},
-	    {x:768,y:64, triggered:false, type:blockType.trap},
-	    
-	    {x:224,y:128, triggered:false, type:blockType.trap},
-	    
-	    {x:544,y:128, triggered:false, type:blockType.trap},
-	    
-	    {x:32,y:192, triggered:false, type:blockType.trap},
-	    
-	    {x:640,y:224, triggered:false, type:blockType.trap},
-	    {x:768,y:224, triggered:false, type:blockType.trap},
-	    {x:896,y:224, triggered:false, type:blockType.trap},
-	    
-	    {x:960,y:160, triggered:false, type:blockType.trap},
-	    
-	];
-	
-	this.locks = [
-	    {x:96, y:128, color:'pink', type:blockType.lock},
-	    {x:352,y:128, color:'orange', type:blockType.lock},
-	    {x:224,y:288, color:'pink', type:blockType.lock},
-	    {x:352,y:288, color:'green', type:blockType.lock},
-	];
-	
-	this.keys = [
-	    {x:128, y:32, color:'pink', type:blockType.key},
-	    {x:32, y:256, color:'orange', type:blockType.key},
-	    {x:224, y:64, color:'red', type:blockType.key},
-	]
+	this.lvl=props.lvl;
+	this.state = props.lvl.initialState;
+	this.blocks = props.lvl.blocks;
+	this.traps = props.lvl.traps;
+	this.locks = props.lvl.locks;
+	this.keys = props.lvl.keys;
 	
 	this.playerKeys = [];
 	this.objects = this.blocks
@@ -74,6 +24,18 @@ class Game extends React.Component {
 	
 	this.handleClick = this.handleClick.bind(this);
 	this.move = this.move.bind(this);
+    }
+
+    reset() {
+	this.setState(this.lvl.initialState);
+	this.traps = this.lvl.traps;
+	this.locks = this.lvl.locks;
+	this.keys = this.lvl.keys;
+	this.playerKeys = [];
+	this.objects = this.blocks
+	    .concat(this.traps)
+	    .concat(this.locks)
+	    .concat(this.keys);
     }
 
     handleClick (event) {
@@ -116,6 +78,7 @@ class Game extends React.Component {
 	
 	if (this.state.playerHealth === 0) {
 	    alert("Game Over!");
+	    this.reset();
 	    return;
 	}
 	if (this.state.playerInitMove) {
@@ -204,4 +167,8 @@ class Game extends React.Component {
 }
 
 
-ReactDOM.render(<Game />, document.getElementById('root'));
+function loadLevel(lvl){
+    ReactDOM.render(<Game lvl={lvl}/>, document.getElementById('root'));
+}
+
+loadLevel(lvl1);
