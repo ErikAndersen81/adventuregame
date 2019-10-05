@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import {Info, Player} from './player.js'
-import {Locks, Keys, Traps, Blocks} from './world.js'
+import {Locks, Keys, Traps, Food, Blocks} from './world.js'
 import {blockSize, blockType} from './utility.js';
 import {lvl1} from './levels.js'
 
@@ -15,12 +15,14 @@ class Game extends React.Component {
 	this.traps = props.lvl.traps;
 	this.locks = props.lvl.locks;
 	this.keys = props.lvl.keys;
+	this.food = props.lvl.food;
 	
 	this.playerKeys = [];
 	this.objects = this.blocks
 	    .concat(this.traps)
 	    .concat(this.locks)
-	    .concat(this.keys);
+	    .concat(this.keys)
+	    .concat(this.food);
 	
 	this.handleClick = this.handleClick.bind(this);
 	this.move = this.move.bind(this);
@@ -31,11 +33,13 @@ class Game extends React.Component {
 	this.traps = this.lvl.traps;
 	this.locks = this.lvl.locks;
 	this.keys = this.lvl.keys;
+	this.food = this.lvl.food;
 	this.playerKeys = [];
 	this.objects = this.blocks
 	    .concat(this.traps)
 	    .concat(this.locks)
-	    .concat(this.keys);
+	    .concat(this.keys)
+	    .concat(this.food);
     }
 
     handleClick (event) {
@@ -113,6 +117,11 @@ class Game extends React.Component {
 		this.keys=this.keys.filter( k => k.color !== collidee.color );
 		this.objects = this.objects.filter(obj => obj.x !== collidee.x || obj.y !== collidee.y );
 		break;
+	    case blockType.food:
+		health += 1;
+		this.food=this.food.filter( obj => obj.x !== collidee.x || obj.y !== collidee.y );
+		this.objects = this.objects.filter(obj => obj.x !== collidee.x || obj.y !== collidee.y );
+		break;
 	    case blockType.lock:
 		const match = this.playerKeys.find( k => k === collidee.color );
 		if (match) {
@@ -164,6 +173,7 @@ class Game extends React.Component {
 	    	<Traps traps={this.traps} />,
 		<Locks locks={this.locks} />,
 		<Keys keys={this.keys} />,
+		<Food food={this.food} />,
 		<Info keys={this.playerKeys} health={this.state.playerHealth} />
 		</div>
 	);

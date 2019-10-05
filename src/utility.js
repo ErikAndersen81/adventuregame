@@ -24,5 +24,6 @@ export const blockType = {
     wall:1,
     lock:2,
     key:3,
-    trap:4
+    trap:4,
+    food:5,
 };

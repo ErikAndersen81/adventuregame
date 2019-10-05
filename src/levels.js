@@ -53,5 +53,9 @@ export const lvl1 = {
 	{x:128, y:32, color:'pink', type:blockType.key},
 	{x:32, y:256, color:'orange', type:blockType.key},
 	{x:224, y:64, color:'red', type:blockType.key},
+    ],
+    food:[
+	{x:64, y:64, image:'hotdog', type:blockType.food},
     ]
+    
 }

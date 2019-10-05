@@ -46,5 +46,9 @@ export function Keys(props) {
 			   <button className={'mapObject  ' + key.color +'Key' } style={{left:key.x, top:key.y}} key={key.x +","+key.y} />);
 }
 
+export function Food(props) {  
+    return props.food.map( (food) =>
+			   <button className={'mapObject '+food.image } style={{left:food.x, top:food.y}} key={food.x +","+food.y} />);
+}
 
 export default { Locks, Keys, Blocks, Traps };
