@@ -29,7 +29,7 @@ export class Blocks extends React.Component {
 	return(
 		<div>
 		<canvas ref="canvas" width={1024} height={425} />
-		<img ref="image" src={wall} style={{opacity:0}} />
+		<img ref="image" src={wall} alt="" style={{opacity:0}} />
 		</div>
 	)
     }

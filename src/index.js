@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import {Info, Player} from './player.js'
 import {Locks, Keys, Traps, Blocks} from './world.js'
-import {translateBitmap, blockSize, blockType} from './utility.js';
+import {blockSize, blockType} from './utility.js';
 import {lvl1} from './levels.js'
 
 class Game extends React.Component {
@@ -26,7 +26,7 @@ class Game extends React.Component {
 	this.move = this.move.bind(this);
     }
 
-    reset() {
+    initialize() {
 	this.setState(this.lvl.initialState);
 	this.traps = this.lvl.traps;
 	this.locks = this.lvl.locks;
@@ -78,7 +78,8 @@ class Game extends React.Component {
 	
 	if (this.state.playerHealth === 0) {
 	    alert("Game Over!");
-	    this.reset();
+	    // reset level
+	    this.initialize();
 	    return;
 	}
 	if (this.state.playerInitMove) {
@@ -116,9 +117,12 @@ class Game extends React.Component {
 		const match = this.playerKeys.find( k => k === collidee.color );
 		if (match) {
 		    this.locks = this.locks.filter( lock => lock.x !== collidee.x || lock.y !== collidee.y);
-		    break;
+		} else {
+		    x = this.state.playerPosX;
+		    y = this.state.playerPosY;
+		    lastMove = true;
 		}
-		// fall-through to default behaviour (i.e. solid block) if no match
+		break;
 	    default:
 		x = this.state.playerPosX;
 		y = this.state.playerPosY;
