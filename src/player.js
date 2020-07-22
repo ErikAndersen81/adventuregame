@@ -2,10 +2,7 @@ import React from 'react';
 
 export function Player(props) {
     var animation='mapObject guy ';
-    if (props.deltaX>0) { animation += 'guyFacingRight '; }
-    else if (props.deltaX<0) { animation += 'guyFacingLeft '; }
-    else if (props.deltaY<0) { animation += 'guyFacingDown '; }
-    else if (props.deltaY>0) { animation += 'guyFacingUp '; };
+    animation += facing[String(props.direction)];
     if (!props.lastMove && !props.moving) {animation += 'guyLastMove';}
     else if ( props.moving ) {animation += 'guyMoving';}
     var Guy = <button className={animation} alt="" style={{
@@ -36,4 +33,11 @@ export function Info(props) {
 	    <p className='infoText' >{'Keys:'}</p>,
 	    <div className='infoItem' > <Keys keys={props.keys} /> </div>,
 	    </div>)
+}
+
+const facing = {
+    "0,-32":"guyFacingUp",
+    "0,32":"guyFacingDown",
+    "-32,0":"guyFacingLeft",
+    "32,0":"guyFacingRight"
 }
