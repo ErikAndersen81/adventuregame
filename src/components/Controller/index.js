@@ -1,16 +1,42 @@
 import React from 'react';
+import '../../css/controller.css';
 
 const Controller = props => {
-    return (<div className="Controller">
-	<ControllerBtn id="upBtn" direction={icons.up} move={props.move} />
-	<ControllerBtn id="downBtn" direction={icons.down} move={props.move} />
-	<ControllerBtn id="leftBtn" direction={icons.left} move={props.move}/>
-	<ControllerBtn id="rightBtn" direction={icons.right} move={props.move}/>
-    </div>);
+    return (
+	<div className="Controller">
+	  <ControllerBtn id="upBtn"
+			 direction={icons.up}
+			 startMoving={props.startMoving}
+			 stopMoving={props.stopMoving}
+			 />
+	  <ControllerBtn id="downBtn"
+			 direction={icons.down}
+			 startMoving={props.startMoving}
+			 stopMoving={props.stopMoving}
+			 />
+	  <ControllerBtn id="leftBtn"
+			 direction={icons.left}
+			 startMoving={props.startMoving}
+			 stopMoving={props.stopMoving}
+			 />
+	  <ControllerBtn id="rightBtn"
+			 direction={icons.right}
+			 startMoving={props.startMoving}
+			 stopMoving={props.stopMoving}
+			 />
+	</div>
+    );
 };
 
 const ControllerBtn = props => {
-    return <button id={props.id} className="ControllerBtn" onClick={props.move}>{props.direction}</button>
+    return (
+	<button id={props.id}
+		className="ControllerBtn"
+		onMouseDown={props.startMoving}
+		onMouseUp={props.stopMoving}
+		onMouseLeave={props.stopMoving}
+	  >{props.direction}</button>
+    );
 }
 
 

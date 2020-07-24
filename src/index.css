@@ -28,35 +28,6 @@ body {
     width: 32px;
 }
 
-/* Player Representation */
-
-.guy {
-    background-image: url('resources/guy.gif');
-    transition-property: left, top;
-    transition-duration: 0.3s;
-    transition-timing-function: linear;
-}
-.guyFacingLeft {
-    background-position-y: 96px;
-}
-.guyFacingRight {
-    background-position-y: 32px;
-}
-.guyFacingUp {
-    background-position-y: 0px;
-}
-.guyFacingDown {
-    background-position-y: 64px;
-}
-.guyMoving {
-    animation: animateGuy 0.3s steps(4) infinite;
-}
-.guyLastMove {
-    animation: animateGuy 0.3s steps(4);
-}
-@keyframes animateGuy {
-    100% {background-position-x:128px; }
-}
 
 /* Keys */
 .blueKey {
@@ -155,43 +126,4 @@ body {
     width:32px;
     height:32px;
     position: static;
-}
-
-.Controller {
-    display:grid;
-    grid-template-columns: auto auto auto;
-    grid-gap: 0px 0px;
-    width: 96px;
-    height: 96px;
-}
-
-.ControllerBtn {
-    width:32px;
-    height:32px;
-    padding:0px 0px 0px 0px;
-    text-align:center;
-    margin: 0px auto;
-    display: inline-block;
-    border: 1px outset blue;
-    background-color: lightBlue;
-}
-
-#upBtn {
-    grid-column-start:2;
-    grid-row-start:1;
-}
-
-#downBtn {
-    grid-column-start:2;
-    grid-row-start:3;    
-}
-
-#leftBtn {
-    grid-column-start:1;
-    grid-row-start:2;
-}
-
-#rightBtn {
-    grid-column-start:3;
-    grid-row-start:2;
 }

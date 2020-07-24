@@ -1,18 +1,7 @@
-import {translateBitmap, blockType} from './utility.js';
+import {translateBitmap, blockType} from './mapUtilities.js';
 
 export const lvl1 = {
-    initialState:{
-	playerPosX: 32,
-	playerPosY: 32,
-	playerDirectionX: 0,
-	playerDirectionY: 0,
-	playerTargetPosX: 0,
-	playerTargetPosY: 0,
-	playerMoving: false,
-	playerInitMove: false,
-	playerLastMove: false,
-	playerHealth:3
-    },
+    spawnPoint:[32,32],
     
     blocks:translateBitmap([
 	0xffffffff,

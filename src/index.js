@@ -1,11 +1,11 @@
-import React, {useState, useEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {Info, Player} from './player.js'
-import {Locks, Keys, Traps, Food, Blocks} from './world.js'
-import {blockSize, blockType} from './utility.js';
-import {lvl1} from './levels.js'
-import Controller from './components/Controller';
+/* import {Locks, Keys, Traps, Food, Blocks} from './world.js'
+import {blockSize, blockType} from './utility.js'; */
+import {lvl1} from './levels';
+
+import Game from './components/Game';
 
 /* class Game extends React.Component {
  *     constructor(props) {
@@ -184,48 +184,8 @@ import Controller from './components/Controller';
  * }
  *  */
 
-const Game = props => {
-    const [playerMoving, setPlayerMoving] = useState(false);
-    const [playerInitMove, setplayerInitMove]=useState(true);
-    const [playerDirection, setplayerDirection]=useState(0);
-    const [playerDirectionX, setplayerDirectionX]=useState(0);
-    const [playerDirectionY, setplayerDirectionY]=useState(0);
-    const [playerTargetPosX, setplayerTargetPosX]=useState(0);
-    const [playerTargetPosY, setplayerTargetPosY]=useState(0);
-    const [playerPosX, setplayerPosX]=useState(0);
-    const [playerPosY, setplayerPosY]=useState(0);
-
-    const move = e => {
-	e.preventDefault();
-	console.log(e.target.id);
-	setPlayerMoving(true);
-	setplayerDirection(direction[[e.target.id]]);
-    }
-    
-    return (
-	<div className='fullScreen'>
-	    <Player
-	    posX={playerPosX}
-	    posY={playerPosY}
-	    moving={playerMoving}
-	    direction={playerDirection}
-	    deltaX={playerDirectionX}
-	    deltaY={playerDirectionY}
-	    />
-	    <Controller move={move} />
-	</div>
-    ); 
+const App = () => {
+    ReactDOM.render(<Game lvl={lvl1}/>, document.getElementById('root'));
 }
 
-function loadLevel(lvl){
-    ReactDOM.render(<Game lvl={lvl}/>, document.getElementById('root'));
-}
-
-const direction = {
-    upBtn:[0,-32],
-    downBtn:[0,32],
-    leftBtn:[-32,0],
-    rightBtn:[32,0]
-}
-
-loadLevel(lvl1);
+App()
