@@ -36,7 +36,7 @@ const Game = props => {
     
     return (
 	    <div>
-	      <Walls blocks={props.lvl.blocks}/>
+	      <Walls blocks={props.lvl.blocks} floor={props.lvl.floor}/>
 	    <Player position={playerPosition}
 		    moving={playerMoving}
 		    direction={playerDirection}

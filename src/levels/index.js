@@ -1,22 +1,25 @@
 import {translateBitmap, blockType} from './mapUtilities.js';
 
+const lvl1Structure = [
+    0xffffffff,
+    0x84400381,
+    0x840ef601,
+    0x84442281,
+    0xeeefa881,
+    0x80442efd,
+    0xbf742201,
+    0x8115f777,
+    0x81442221,
+    0x806f7021,
+    0x81c00221,
+    0xffffffff
+];
+
 export const lvl1 = {
     spawnPoint:[32,32],
-    
-    blocks:translateBitmap([
-	0xffffffff,
-	0x84400381,
-	0x840ef601,
-	0x84442281,
-	0xeeefa881,
-	0x80442efd,
-	0xbf742201,
-	0x8115f777,
-	0x81442221,
-	0x806f7021,
-	0x81c00221,
-	0xffffffff
-    ]),
+
+    blocks:translateBitmap(lvl1Structure),
+    floor:translateBitmap(lvl1Structure.map(x => ~x)),
     
     traps:[
 	{x:288,y:64, triggered:false, type:blockType.trap},
