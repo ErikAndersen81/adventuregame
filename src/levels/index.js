@@ -37,12 +37,12 @@ export const lvl1 = {
     locks:[
 	{x:96, y:128, color:'blue', type:blockType.lock},
 	{x:352,y:128, color:'orange', type:blockType.lock},
-	{x:224,y:288, color:'pink', type:blockType.lock},
+	{x:224,y:288, color:'turquoise', type:blockType.lock},
 	{x:352,y:288, color:'blue', type:blockType.lock},
     ],
     
     keys:[
-	{x:128, y:32, color:'pink', type:blockType.key},
+	{x:128, y:32, color:'blue', type:blockType.key},
 	{x:32, y:256, color:'orange', type:blockType.key},
 	{x:224, y:64, color:'red', type:blockType.key},
     ],

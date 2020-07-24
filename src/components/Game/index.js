@@ -4,6 +4,7 @@ import Controller from '../Controller';
 import Walls from '../Walls';
 import Floor from '../Floor';
 import Doors from '../Doors';
+import Keys from '../Keys';
 
 const Game = props => {
     const [playerMoving, setPlayerMoving] = useState(0);
@@ -49,6 +50,7 @@ const Game = props => {
 	      <Walls blocks={props.lvl.walls} />
 	      <Floor blocks={props.lvl.floor} />
 	      <Doors blocks={props.lvl.locks} />
+	      <Keys blocks={props.lvl.keys} />
 	    <Player position={playerPosition}
 		    moving={playerMoving}
 		    direction={playerDirection}
