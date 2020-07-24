@@ -3,11 +3,12 @@ import Player from '../Player';
 import Controller from '../Controller';
 import Walls from '../Walls';
 import Floor from '../Floor';
+import Doors from '../Doors';
 
 const Game = props => {
     const [playerMoving, setPlayerMoving] = useState(0);
-    const [playerDirection, setPlayerDirection]=useState([0,0]);
-    const [playerPosition, setPlayerPosition]=useState(props.lvl.spawnPoint);
+    const [playerDirection, setPlayerDirection] = useState([0,0]);
+    const [playerPosition, setPlayerPosition] = useState(props.lvl.spawnPoint);
 
     const startMoving = e => {
 	e.preventDefault();
@@ -26,7 +27,6 @@ const Game = props => {
 
     const move = () => {
 	if (collisionDetected()) {
-	    console.log("bang");
 	    setPlayerMoving(0);
 	    return;}
 	const newPosition = playerPosition.map((x,i) => x + playerDirection[i]);
@@ -48,6 +48,7 @@ const Game = props => {
 	    <div>
 	      <Walls blocks={props.lvl.walls} />
 	      <Floor blocks={props.lvl.floor} />
+	      <Doors blocks={props.lvl.locks} />
 	    <Player position={playerPosition}
 		    moving={playerMoving}
 		    direction={playerDirection}
