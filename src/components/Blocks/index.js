@@ -1,24 +1,20 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
 import '../../css/canvas.css';
+import CanvasContext from '../Context/CanvasContext.js';
 
 const Blocks = props => {
-    const canvasRef = useRef(null);
     const imgRef = useRef(null);
-
+    const canvasRef = useContext(CanvasContext);
     useEffect( () => {
 	const ctx = canvasRef.current.getContext("2d");
 	const img = imgRef.current;
 	if (props.blocks) {
 	    props.blocks.forEach(b => ctx.drawImage(img, b.x, b.y));
 	}
-    },[props.blocks]);
+    },[props.blocks, canvasRef]);
     
     return (
 	<>
-	  <canvas id={props.id + "Canvas"}
-		  ref={canvasRef}
-		  width={1024}
-		  height={425} />
 	  <img ref={imgRef}
 	       alt=""
 	       src={props.resource}

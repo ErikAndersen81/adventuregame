@@ -1,27 +1,8 @@
 
 .Controller {
-    position:fixed;
-    border:3px solid white;
-    background: #006633;
-    bottom:0px;
-    right:0px;
     display:grid;
     grid-template-columns: auto auto auto;
     grid-gap: 0px 0px;
-    width: 96px;
-    height: 96px;
-}
-
-.ControllerBtn {
-    font-size:32px;
-    width:32px;
-    height:32px;
-    padding:0px 0px 0px 0px;
-    text-align:center;
-    margin: 0px auto;
-    display: inline-block;
-    border: 1px outset blue;
-    background-color: lightBlue;
 }
 
 #upBtn {

@@ -1,5 +1,4 @@
 import React from 'react';
-import Blocks from '../Blocks';
 import blue from '../../resources/Keys/Key_Blue.png'
 import green from '../../resources/Keys/Key_Green.png'
 import orange from '../../resources/Keys/Key_Orange.png'
@@ -19,7 +18,7 @@ const colors = {
 
 const Keys = (props) => {
     return props.blocks.map(key => (
-	<Block id={"key"}
+	<Block key={"key"+ key.x+key.y}
 	       position={[key.x, key.y]}
 	       resource={colors[key.color]} />
     ));

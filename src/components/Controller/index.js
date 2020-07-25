@@ -3,7 +3,7 @@ import '../../css/controller.css';
 
 const Controller = props => {
     return (
-	<div className="Controller">
+	<div className="w3-display-bottomright Controller">
 	  <ControllerBtn id="upBtn"
 			 direction={icons.up}
 			 startMoving={props.startMoving}
@@ -31,7 +31,7 @@ const Controller = props => {
 const ControllerBtn = props => {
     return (
 	<button id={props.id}
-		className="ControllerBtn"
+		className="w3-circle w3-black"
 		onMouseDown={props.startMoving}
 		onMouseUp={props.stopMoving}
 		onMouseLeave={props.stopMoving}
