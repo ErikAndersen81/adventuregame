@@ -13,7 +13,7 @@ const Game = props => {
     const [playerMoving, setPlayerMoving] = useState(false);
     const [playerDirection, setPlayerDirection] = useState("down");
     const [playerPosition, setPlayerPosition] = useState(props.lvl.spawnPoint);
-
+    const wallCenters = props.lvl.walls.map(pos => {return {x:pos.x+16, y:pos.y+16}})
     const startMoving = e => {
 	e.preventDefault();
 	if (playerMoving) return;
@@ -27,16 +27,15 @@ const Game = props => {
 	if (playerMoving) setPlayerMoving(0);
     }
     
-    const collisionDetected = () => {
-	/* TODO */
-	return false;
-  	const [x, y] = playerPosition.map((c,i) => c + playerDirection[i]);
-  	return props.lvl.walls.find((pos) =>  pos.x === x && pos.y === y);
+    const collisionCheck = () => {
+	let playerCenter = {x:playerPosition.x+16, y:playerPosition.y+16};
+	let proximate = getProximate(playerCenter, wallCenters);
+	let result = proximate.map(block => collides(playerCenter, block));
+	console.log(result);
     }
 
     const canvasRef = useRef(null);
     const playerCanvasRef = useRef(null);
-   
     return (
 	<>
 	  <CanvasContext.Provider value={canvasRef} >
@@ -51,7 +50,9 @@ const Game = props => {
 	    <Player position={playerPosition}
 		    setPosition={setPlayerPosition}
 		    moving={playerMoving}
-		    direction={playerDirection}/>
+		    direction={playerDirection}
+		    collisionCheck={collisionCheck}
+		    />
 	  </PlayerCanvasContext.Provider>
 	  <div className="w3-content overlay">
 	    <HealthBar />
@@ -65,6 +66,22 @@ const Game = props => {
 
 const getDirection = btn => {
     return btn.slice(0,-3);
+}
+
+/*
+ * This collision detection is based on the assumption that any object is
+ * rectangular s.t. its sides are parallel to one of the basis vectors,
+ * (0,1) and (1,0).
+ */
+
+const getProximate = (playerPos, blocksPos) => {
+    const manhattanDist = (a,b) => Math.abs(a.x-b.x)+Math.abs(a.y-b.y);
+    const withinProximity = (pos) => manhattanDist(playerPos, pos) <= 64;
+    return blocksPos.filter(pos => withinProximity(pos))
+}
+
+const collides = (A, B) => {
+    return (Math.abs(A.x-B.x) < 28) && (Math.abs(A.y-B.y)<30);
 }
 
 export default Game;

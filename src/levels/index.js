@@ -16,7 +16,7 @@ const lvl1Structure = [
 ];
 
 export const lvl1 = {
-    spawnPoint:[32,32],
+    spawnPoint:{x:32,y:32},
 
     walls:translateBitmap(lvl1Structure),
     floor:translateBitmap(lvl1Structure.map(x => ~x)),

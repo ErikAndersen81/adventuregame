@@ -4,22 +4,26 @@ import playerGif from "../../resources/guy.gif";
 
 const Player = props => {
     const [spriteIdx, setSpriteIdx] = useState(0);
-    let [x,y] = props.position;
-    const [sx, sy] = spriteOffset(spriteIdx, props.direction);
-    const [dx, dy] = positionDelta(spriteIdx, props.direction)
+    let [x,y] = [props.position.x, props.position.y];
+    const {sx, sy} = spriteOffset(spriteIdx, props.direction);
+    const {dx, dy} = positionDelta(spriteIdx, props.direction)
     const imgRef = useRef(null);
     const canvasRef = useContext(PlayerCanvasContext);
-
+    
     const animate = () => {
 	const ctx = canvasRef.current.getContext("2d");
 	const img = imgRef.current;
 	ctx.clearRect(x-4, y-4, 42, 42);
 	ctx.drawImage(img, sx*props.moving, sy, 32, 32, x, y, 32, 32);
     }
+
+    useEffect(() => {
+	props.collisionCheck();
+    }, [props.position]);
     
     useEffect(() => {
 	animate();
-	const move = () => props.setPosition([x+dx, y+dy]);
+	const move = () => props.setPosition({x:x+dx, y:y+dy});
 	if (props.moving) setTimeout(move, 10);
 	else clearTimeout(move);
     }, [x, y, props.moving]);
@@ -52,14 +56,14 @@ const spriteOffset = (state, direction) => {
 	"right":96 };
     let sx = [64, 32, 64, 96,128, 96][state];
     let sy = translate[String(direction)];
-    return [sx, sy];
+    return {sx:sx, sy:sy};
 }
 
 
 const positionDelta = (state, direction) => {
     let baseScalar = {'up':-1, 'left':-1, 'down':1, 'right':1};
     let coord = baseScalar[direction];
-    if (direction === 'up' || direction === 'down') return [0,coord];
-    return [coord,0];
+    if (direction === 'up' || direction === 'down') return {dx:0,dy:coord};
+    return {dx:coord,dy:0};
 }
 export default Player;
