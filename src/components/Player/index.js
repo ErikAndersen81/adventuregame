@@ -6,7 +6,7 @@ const Player = props => {
     const [spriteIdx, setSpriteIdx] = useState(0);
     let [x,y] = [props.position.x, props.position.y];
     const {sx, sy} = spriteOffset(spriteIdx, props.direction);
-    const {dx, dy} = positionDelta(spriteIdx, props.direction)
+    const {dx, dy} = positionDelta(props.direction)
     const imgRef = useRef(null);
     const canvasRef = useContext(PlayerCanvasContext);
     
@@ -16,16 +16,16 @@ const Player = props => {
 	ctx.clearRect(x-4, y-4, 42, 42);
 	ctx.drawImage(img, sx*props.moving, sy, 32, 32, x, y, 32, 32);
     }
-
-    useEffect(() => {
-	props.collisionCheck();
-    }, [props.position]);
     
     useEffect(() => {
 	animate();
-	const move = () => props.setPosition({x:x+dx, y:y+dy});
-	if (props.moving) setTimeout(move, 10);
-	else clearTimeout(move);
+	const move = () => {
+	    props.setPosition({x:x+dx, y:y+dy});
+	}
+	if (props.moving) {
+	    if (props.collisionCheck()) props.setMoving(0);
+	    else setTimeout(move, 10);
+	} else clearTimeout(move);
     }, [x, y, props.moving]);
 
     useEffect( () => {
@@ -60,10 +60,13 @@ const spriteOffset = (state, direction) => {
 }
 
 
-const positionDelta = (state, direction) => {
+const positionDelta = (direction) => {
     let baseScalar = {'up':-1, 'left':-1, 'down':1, 'right':1};
     let coord = baseScalar[direction];
     if (direction === 'up' || direction === 'down') return {dx:0,dy:coord};
     return {dx:coord,dy:0};
 }
+
+export { positionDelta };
+
 export default Player;

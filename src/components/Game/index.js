@@ -1,5 +1,5 @@
-import React, {useState, useRef, useEffect } from 'react';
-import Player from '../Player';
+import React, {useState, useRef } from 'react';
+import Player, { positionDelta } from '../Player';
 import Controller from '../Controller';
 import Walls from '../Walls';
 import Floor from '../Floor';
@@ -28,10 +28,12 @@ const Game = props => {
     }
     
     const collisionCheck = () => {
-	let playerCenter = {x:playerPosition.x+16, y:playerPosition.y+16};
-	let proximate = getProximate(playerCenter, wallCenters);
-	let result = proximate.map(block => collides(playerCenter, block));
-	console.log(result);
+	let {x,y} = {x:playerPosition.x+16, y:playerPosition.y+16};
+	let {dx, dy} = positionDelta(playerDirection);
+	let playerNextPos = {x:x+dx, y:y+dy}
+	let proximate = getProximate(playerNextPos, wallCenters);
+	let collisions = proximate.map(block => collides(playerNextPos, block));
+	return collisions.includes(true);
     }
 
     const canvasRef = useRef(null);
@@ -50,6 +52,7 @@ const Game = props => {
 	    <Player position={playerPosition}
 		    setPosition={setPlayerPosition}
 		    moving={playerMoving}
+		    setMoving={setPlayerMoving}
 		    direction={playerDirection}
 		    collisionCheck={collisionCheck}
 		    />
@@ -81,7 +84,7 @@ const getProximate = (playerPos, blocksPos) => {
 }
 
 const collides = (A, B) => {
-    return (Math.abs(A.x-B.x) < 28) && (Math.abs(A.y-B.y)<30);
+    return (Math.abs(A.x-B.x) < 28) && (Math.abs(A.y-B.y)<31);
 }
 
 export default Game;
