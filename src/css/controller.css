@@ -1,0 +1,26 @@
+
+.Controller {
+    display:grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 0px 0px;
+}
+
+#upBtn {
+    grid-column-start:2;
+    grid-row-start:1;
+}
+
+#downBtn {
+    grid-column-start:2;
+    grid-row-start:3;    
+}
+
+#leftBtn {
+    grid-column-start:1;
+    grid-row-start:2;
+}
+
+#rightBtn {
+    grid-column-start:3;
+    grid-row-start:2;
+}

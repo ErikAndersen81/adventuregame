@@ -10,149 +10,20 @@ body {
     background-size: cover;
 }
 
-.fullScreen {
-    width:100vw;
-    height:100vh;
+/* Hide all the img resources. */
+img {
+    display:none;
 }
 
-
-/* ============================ Map ========================= */
-
-/* General block. Inherited by every object on the map */
-.mapObject {
-    position: absolute;
-    outline:none;
-    background-color: rgba(0,0,0,0);
-    border: 0;
-    height: 32px;
-    width: 32px;
-}
-
-/* Player Representation */
-
-.guy {
-    background-image: url('resources/guy.gif');
-    transition-property: left, top;
-    transition-duration: 0.3s;
-    transition-timing-function: linear;
-}
-.guyFacingLeft {
-    background-position-y: 96px;
-}
-.guyFacingRight {
-    background-position-y: 32px;
-}
-.guyFacingUp {
-    background-position-y: 0px;
-}
-.guyFacingDown {
-    background-position-y: 64px;
-}
-.guyMoving {
-    animation: animateGuy 0.3s steps(4) infinite;
-}
-.guyLastMove {
-    animation: animateGuy 0.3s steps(4);
-}
-@keyframes animateGuy {
-    100% {background-position-x:128px; }
-}
-
-/* Keys */
-.blueKey {
-    background-image:url('resources/blueKey.gif');
-}
-.redKey {
-    background-image:url('resources/redKey.gif');
-}
-.yellowKey {
-    background-image:url('resources/yellowKey.gif');
-}
-.orangeKey {
-    background-image:url('resources/orangeKey.gif');
-}
-.pinkKey {
-    background-image:url('resources/pinkKey.gif');
-}
-.greenKey {
-    background-image:url('resources/greenKey.gif');
-}
-.blackKey {
-    background-image:url('resources/blackKey.gif');
-}
-
-/* Locks */
-.blueLock {
-    background-image:url('resources/blueLock.png');
-}
-.redLock {
-    background-image:url('resources/redLock.png');
-}
-.yellowLock {
-    background-image:url('resources/yellowLock.png');
-}
-.orangeLock {
-    background-image:url('resources/orangeLock.png');
-}
-.pinkLock {
-    background-image:url('resources/pinkLock.png');
-}
-.greenLock {
-    background-image:url('resources/greenLock.png');
-}
-.blackLock {
-    background-image:url('resources/blackLock.png');
-}
-
-/* Traps */
-.trap {
-    background-image:url('resources/trap.gif');
-}
-.trapTriggered {
-    animation: trapHit 250ms steps(8) alternate;
-    animation-delay: 125ms;
-}
-@keyframes trapHit {
-    0% {background-position-x: 256px;}
-    100% {background-position-x: 0px;}
-}
-
-/* Food */
-
-.hotdog {
-    background-image:url('resources/hotdog.png');
-}
-
-/* =========== Player Info ============= */
-.info {
-    position:fixed;
+canvas {
+    position:absolute;
     top:0;
-    right:0;
-    width:25vw;
-    display:grid;
-    grid-template-columns: auto auto;
-}
-.infoText {
-    grid-column:1/1;
-    color: #f51;
-}
-.infoItem {
-    grid-column:2/2;
+    left:0;
+    height:100vh;
+    object-fit:cover;
+    object-position:0% 0%;
 }
 
-.key {
-    background-color: rgba(0,0,0,0);
-    border:0;
-    width:32px;
-    height:32px;
-    position: static;
-}
-
-.heart {
-    background-image: url('resources/heart.gif');
-    background-color: rgba(0,0,0,0);
-    border:0;
-    width:32px;
-    height:32px;
-    position: static;
+.overlay{
+    width:100%;
 }
