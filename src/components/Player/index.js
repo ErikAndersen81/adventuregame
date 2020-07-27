@@ -1,44 +1,49 @@
 import React, { useRef, useEffect, useContext, useState } from 'react';
 import PlayerCanvasContext from '../Context/PlayerCanvasContext.js';
-import playerGif from "../../resources/guy.gif";
+import playerGif from "../../resources/player/player.gif";
+import PlayerContext from '../Context/PlayerContext.js';
 
 const Player = props => {
     const [spriteIdx, setSpriteIdx] = useState(0);
     let [x,y] = [props.position.x, props.position.y];
-    const {sx, sy} = spriteOffset(spriteIdx, props.direction);
-    const {dx, dy} = positionDelta(props.direction)
+    const {moving, setMoving, direction, setDirection} = useContext(PlayerContext);
+    const {sx, sy} = spriteOffset(spriteIdx, direction);
+    const {dx, dy} = positionDelta(direction);
     const imgRef = useRef(null);
     const canvasRef = useContext(PlayerCanvasContext);
     
-    const animate = () => {
+    const draw = () => {
 	const ctx = canvasRef.ref.current.getContext("2d");
 	const img = imgRef.current;
 	ctx.clearRect(x-4, y-4, 42, 42);
-	ctx.drawImage(img, sx*props.moving, sy, 32, 32, x, y, 32, 32);
+	ctx.drawImage(img, sx*moving, sy, 32, 32, x, y, 32, 32);
     }
-    
-    useEffect(() => {
-	animate();
+
+    const animateMovement = () => {
+	draw();
 	const move = () => {
 	    props.setPosition({x:x+dx, y:y+dy});
 	}
-	if (props.moving) {
-	    if (props.collisionCheck()) props.setMoving(0);
+	if (moving) {
+	    if (props.collisionCheck()) setMoving(false);
 	    else setTimeout(move, 10);
 	} else clearTimeout(move);
-    }, [x, y, props.moving]);
+    }
 
-    useEffect( () => {
+    const animateSprite = () => {
 	const nextSprite = () => setSpriteIdx((spriteIdx + 1) % 6);
 	const reset = () => setSpriteIdx(0);
-	if (props.moving) {
+	if (moving) {
 	    clearTimeout(reset);
 	    setTimeout(nextSprite, 150);
 	} else {
 	    clearTimeout(nextSprite);
 	    setSpriteIdx(0)
 	}
-    },[spriteIdx, props.moving]);
+    }
+    
+    useEffect(animateMovement, [x, y, moving]);
+    useEffect(animateSprite, [spriteIdx, moving]);
     
     return (
 	    <img alt=""

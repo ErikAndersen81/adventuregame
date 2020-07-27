@@ -7,6 +7,7 @@ const PlayerInfo = props => {
 
 const HealthBar = props => {
     const [health, setHealth] = useState(100);
+    if (false) setHealth(129);
     return (
 	<div className="w3-display-topright">
 	  <div className="w3-panel">

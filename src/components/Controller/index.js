@@ -1,41 +1,50 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import '../../css/controller.css';
+import PlayerContext from '../Context/PlayerContext.js';
 
 const Controller = props => {
     return (
 	<div className="w3-display-bottomright Controller">
 	  <ControllerBtn id="upBtn"
-			 direction={icons.up}
-			 startMoving={props.startMoving}
-			 stopMoving={props.stopMoving}
+			 icon={icons.up}
+			 direction="up"
 			 />
 	  <ControllerBtn id="downBtn"
-			 direction={icons.down}
-			 startMoving={props.startMoving}
-			 stopMoving={props.stopMoving}
+			 icon={icons.down}
+			 direction="down"
 			 />
 	  <ControllerBtn id="leftBtn"
-			 direction={icons.left}
-			 startMoving={props.startMoving}
-			 stopMoving={props.stopMoving}
+			 icon={icons.left}
+			 direction="left"
 			 />
 	  <ControllerBtn id="rightBtn"
-			 direction={icons.right}
-			 startMoving={props.startMoving}
-			 stopMoving={props.stopMoving}
+			 direction="right"
+			 icon={icons.right}
 			 />
 	</div>
     );
 };
 
 const ControllerBtn = props => {
+    const {moving, setMoving, setDirection} = useContext(PlayerContext);
+    const startMoving = e => {
+	e.preventDefault();
+	if (moving) return;
+	setMoving(true);
+	setDirection(props.direction);
+    }
+
+    const stopMoving = e => {
+	e.preventDefault();
+	if (moving) setMoving(false);
+    }
     return (
 	<button id={props.id}
 		className="w3-circle w3-black"
-		onMouseDown={props.startMoving}
-		onMouseUp={props.stopMoving}
-		onMouseLeave={props.stopMoving}
-	  >{props.direction}</button>
+		onMouseDown={startMoving}
+		onMouseUp={stopMoving}
+		onMouseLeave={stopMoving}
+	  >{props.icon}</button>
     );
 }
 
