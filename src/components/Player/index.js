@@ -11,7 +11,7 @@ const Player = props => {
     const canvasRef = useContext(PlayerCanvasContext);
     
     const animate = () => {
-	const ctx = canvasRef.current.getContext("2d");
+	const ctx = canvasRef.ref.current.getContext("2d");
 	const img = imgRef.current;
 	ctx.clearRect(x-4, y-4, 42, 42);
 	ctx.drawImage(img, sx*props.moving, sy, 32, 32, x, y, 32, 32);

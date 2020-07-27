@@ -6,7 +6,7 @@ const Blocks = props => {
     const imgRef = useRef(null);
     const canvasRef = useContext(CanvasContext);
     useEffect( () => {
-	const ctx = canvasRef.current.getContext("2d");
+	const ctx = canvasRef.ref.current.getContext("2d");
 	const img = imgRef.current;
 	if (props.blocks) {
 	    props.blocks.forEach(b => ctx.drawImage(img, b.x, b.y));

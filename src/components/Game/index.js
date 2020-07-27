@@ -1,4 +1,4 @@
-import React, {useState, useRef } from 'react';
+import React, {useState, useRef, useEffect } from 'react';
 import Player, { positionDelta } from '../Player';
 import Controller from '../Controller';
 import Walls from '../Walls';
@@ -13,6 +13,7 @@ const Game = props => {
     const [playerMoving, setPlayerMoving] = useState(false);
     const [playerDirection, setPlayerDirection] = useState("down");
     const [playerPosition, setPlayerPosition] = useState(props.lvl.spawnPoint);
+    const [canvasPosition, setCanvasPosition] = useState({x:0,y:0});
     const wallCenters = props.lvl.walls.map(pos => {return {x:pos.x+16, y:pos.y+16}})
     const startMoving = e => {
 	e.preventDefault();
@@ -38,17 +39,54 @@ const Game = props => {
 
     const canvasRef = useRef(null);
     const playerCanvasRef = useRef(null);
+    
+    const moveCanvases = (canvases, delta) => {
+	canvases.forEach( canvasRef => {
+	    const ctx = canvasRef.current.getContext("2d");
+	    ctx.clearRect(0,0,props.lvl.width, props.lvl.height);
+	    ctx.translate(delta.x, delta.y);
+	});
+	setCanvasPosition({x:canvasPosition.x+delta.x,
+			   y:canvasPosition.y+delta.y});
+    }
+    
+    const calibrateView = () => {
+	let height = canvasRef.current.clientHeight;
+	let width = canvasRef.current.clientWidth;
+	const ctx = canvasRef.current.getContext("2d");
+	const playerCtx = playerCanvasRef.current.getContext("2d");
+	var delta = {x:0, y:0};
+	if (playerPosition.x + canvasPosition.x > width * 0.80) {
+	    delta.x = -width/2;
+	} else if (playerPosition.x + canvasPosition.x < width * 0.20) {
+	    delta.x = width/2;
+	} else if (playerPosition.y + canvasPosition.y < height * 0.20) {
+	    delta.y = height/2;
+	} else if (playerPosition.y + canvasPosition.y > height * 0.80) {
+	    delta.y = -height/2;
+	} else return;
+	moveCanvases([canvasRef, playerCanvasRef], delta);
+    }
+
+    useEffect(calibrateView, [playerPosition]);
+    
     return (
 	<>
-	  <CanvasContext.Provider value={canvasRef} >
-	    <canvas ref={canvasRef} width="1024px" height="384px" />
-	    <canvas ref={playerCanvasRef} width="1024px" height="384"/>
+	  <CanvasContext.Provider value={{ref:canvasRef, position:canvasPosition}} >
+	    <canvas ref={canvasRef}
+		    width={props.lvl.width}
+		    height={props.lvl.height}
+		    />
+	    <canvas ref={playerCanvasRef}
+		    width={props.lvl.width}
+		    height={props.lvl.width}
+		    />
 	    <Walls blocks={props.lvl.walls} />
 	    <Floor blocks={props.lvl.floor} />
 	    <Doors blocks={props.lvl.locks} />
 	    <Keys blocks={props.lvl.keys} />
 	  </CanvasContext.Provider>
-	  <PlayerCanvasContext.Provider value={playerCanvasRef} >
+	  <PlayerCanvasContext.Provider value={{ref:playerCanvasRef, position:canvasPosition}} >
 	    <Player position={playerPosition}
 		    setPosition={setPlayerPosition}
 		    moving={playerMoving}
@@ -77,10 +115,10 @@ const getDirection = btn => {
  * (0,1) and (1,0).
  */
 
-const getProximate = (playerPos, blocksPos) => {
+const getProximate = (playerPosition, blocksPosition) => {
     const manhattanDist = (a,b) => Math.abs(a.x-b.x)+Math.abs(a.y-b.y);
-    const withinProximity = (pos) => manhattanDist(playerPos, pos) <= 64;
-    return blocksPos.filter(pos => withinProximity(pos))
+    const withinProximity = (pos) => manhattanDist(playerPosition, pos) <= 64;
+    return blocksPosition.filter(pos => withinProximity(pos))
 }
 
 const collides = (A, B) => {

@@ -16,12 +16,14 @@ img {
 }
 
 canvas {
-    position:absolute;
     top:0;
     left:0;
+    position:absolute;
     height:100vh;
-    object-fit:cover;
-    object-position:0% 0%;
+    width:100vw;
+    overflow: hidden;
+    object-fit:none;
+    object-position: 0px 0px;
 }
 
 .overlay{
