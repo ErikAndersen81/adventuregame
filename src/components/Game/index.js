@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import Controller from '../Controller';
 import PlayerInfo, {HealthBar} from '../PlayerInfo';
-import PlayerContext from '../Context/PlayerContext.js';
+import { PlayerContext, GraphicsContext } from '../Context';
 import World from '../World';
+import Resources from '../Resources';
 
 const Game = props => {
     const [playerMoving, setPlayerMoving] = useState(false);
     const [playerDirection, setPlayerDirection] = useState("down");
+    const [refs, setRefs] = useState(null);
     
     const player = {
 	moving:playerMoving,
@@ -17,12 +19,15 @@ const Game = props => {
     
     return (
 	<PlayerContext.Provider value={player}>
-	  <World level={props.level} />
-	  <div className="w3-content overlay">
-	    <HealthBar />
-	    <Controller />
-	  </div>
-	  {null && <PlayerInfo />}
+	  <GraphicsContext.Provider value={{refs:refs, setRefs:setRefs}}>
+	    <Resources />
+	    <World level={props.level} />
+	    <div className="w3-content overlay">
+	      <HealthBar />
+	      <Controller />
+	    </div>
+	    {null && <PlayerInfo />}
+	  </GraphicsContext.Provider>
 	</PlayerContext.Provider>
     ); 
 }

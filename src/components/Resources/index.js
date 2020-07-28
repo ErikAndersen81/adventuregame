@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
-import wall from '../../resources/Walls/StoneWall.png';
-import floor from '../../resources/Floor/StoneMosaicFloor2.png';
-import player from '../../resources/player/player.gif';
-import doors from '../../resources/Doors/';
+import React, { useContext, useEffect } from 'react';
+import images from './images.js';
+import { GraphicsContext } from '../Context';
 
 const Resources = props => {
-    return null;
+    const { setRefs } = useContext(GraphicsContext);
+    const refs = Object.assign({}, ...images.map((x) => ({[x.id]: x.group})));
+    const imgs = images.map(({id, src, group}) => (<img key={id} src={src} group={group} />));
+    useEffect(() => {
+	setRefs(refs);
+    }, []);
+    
+    return imgs;
 }
 
 export default Resources;
