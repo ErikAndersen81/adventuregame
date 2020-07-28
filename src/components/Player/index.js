@@ -1,12 +1,12 @@
 import React, { useRef, useEffect, useContext, useState } from 'react';
 import PlayerCanvasContext from '../Context/PlayerCanvasContext.js';
-import playerGif from "../../resources/player/player.gif";
+import { player } from '../Resources';
 import PlayerContext from '../Context/PlayerContext.js';
 
 const Player = props => {
     const [spriteIdx, setSpriteIdx] = useState(0);
     let [x,y] = [props.position.x, props.position.y];
-    const {moving, setMoving, direction, setDirection} = useContext(PlayerContext);
+    const {moving, setMoving, direction} = useContext(PlayerContext);
     const {sx, sy} = spriteOffset(spriteIdx, direction);
     const {dx, dy} = positionDelta(direction);
     const imgRef = useRef(null);
@@ -44,10 +44,9 @@ const Player = props => {
     
     useEffect(animateMovement, [x, y, moving]);
     useEffect(animateSprite, [spriteIdx, moving]);
-    
     return (
 	    <img alt=""
-		 src={playerGif}
+		 src={player.src}
 		 ref={imgRef}
 		 />
     );

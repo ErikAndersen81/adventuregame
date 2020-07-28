@@ -35,11 +35,19 @@ const World = props => {
 	setCanvasOffset({x:canvasOffset.x+delta.x,
 			   y:canvasOffset.y+delta.y});
     }
-    
-    const calibrateView = () => {
+
+    const canvasOverflow = (delta) => {
+	if (props.level.width + canvasOffset.x < 0
+	    || canvasOffset.x+delta.x > 0
+	    || props.level.height + canvasOffset.y < 0
+	    || canvasOffset.y+delta.y > 0) return true;
+	return false;
+    }
+
+    const getCanvasDelta = () => {
+	var delta = {x:0, y:0};
 	let height = canvasRef.current.clientHeight;
 	let width = canvasRef.current.clientWidth;
-	var delta = {x:0, y:0};
 	if (playerPosition.x + canvasOffset.x > width-64) {
 	    delta.x = -width/2;
 	} else if (playerPosition.x + canvasOffset.x <= 64) {
@@ -48,15 +56,13 @@ const World = props => {
 	    delta.y = height/2;
 	} else if (playerPosition.y + canvasOffset.y >= height-64) {
 	    delta.y = -height/2;
-	} else return;
-	console.log("delta.x, delta.y", delta.x, delta.y);
-	console.log(props.level.width , canvasOffset.x);
-	let overFlow=false
-	if (props.level.width + canvasOffset.x < 0) {console.log("canvasOffset.x overflow right");overFlow=true;}
-	if (canvasOffset.x+delta.x > 0) {console.log("canvasOffset.x overflow left");overFlow=true;}
-	if (props.level.height + canvasOffset.y < 0) {console.log("canvasOffset.y overflow bottom");overFlow=true;}
-	if (canvasOffset.y+delta.y > 0) {console.log("canvasOffset.y overflow top");overFlow=true;}
-	if (overFlow) return;
+	}
+	return delta;
+    }
+    
+    const calibrateView = () => {
+	let delta = getCanvasDelta();
+	if (delta.x+delta.y === 0 || canvasOverflow(delta)) return;
 	moveCanvases([canvasRef, playerCanvasRef], delta);
     }
 
@@ -68,12 +74,10 @@ const World = props => {
 	  <CanvasContext.Provider value={{ref:canvasRef}} >
 	    <canvas ref={canvasRef}
 		    width={props.level.width}
-		    height={props.level.height}
-		    />
+		    height={props.level.height}/>
 	    <canvas ref={playerCanvasRef}
 		    width={props.level.width}
-		    height={props.level.width}
-		    />
+		    height={props.level.width}/>
 	    <Walls blocks={props.level.walls} />
 	    <Floor blocks={props.level.floor} />
 	  </CanvasContext.Provider>

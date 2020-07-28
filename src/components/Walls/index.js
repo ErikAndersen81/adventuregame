@@ -1,9 +1,9 @@
 import React from 'react';
 import Blocks from '../Blocks';
-import wall from '../../resources/Walls/StoneWall.png';
+import { walls } from '../Resources';
 
 const Walls = props => {
-    return <Blocks id="walls" blocks={props.blocks} resource={wall} />
+    return <Blocks id="walls" blocks={props.blocks} resource={walls[0].src} />
 };
 
 

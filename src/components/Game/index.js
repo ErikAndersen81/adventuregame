@@ -3,24 +3,30 @@ import Controller from '../Controller';
 import PlayerInfo, {HealthBar} from '../PlayerInfo';
 import { PlayerContext, GraphicsContext } from '../Context';
 import World from '../World';
-import Resources from '../Resources';
+import { floors, doors, walls, keys, player } from '../Resources';
 
 const Game = props => {
     const [playerMoving, setPlayerMoving] = useState(false);
     const [playerDirection, setPlayerDirection] = useState("down");
-    const [refs, setRefs] = useState(null);
     
-    const player = {
+    const playerCtx = {
 	moving:playerMoving,
 	setMoving:setPlayerMoving,
 	direction:playerDirection,
 	setDirection:setPlayerDirection,
     }
+
+    const graphicsCtx = {
+	floors:floors,
+	doors:doors,
+	walls:walls,
+	keys:keys,
+	player:player
+    }
     
     return (
-	<PlayerContext.Provider value={player}>
-	  <GraphicsContext.Provider value={{refs:refs, setRefs:setRefs}}>
-	    <Resources />
+	<PlayerContext.Provider value={playerCtx}>
+	  <GraphicsContext.Provider value={graphicsCtx}>
 	    <World level={props.level} />
 	    <div className="w3-content overlay">
 	      <HealthBar />

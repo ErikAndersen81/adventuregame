@@ -1,29 +1,55 @@
+import blueDoor from '../../resources/Doors/Door_Blue.gif';
+import greenDoor from '../../resources/Doors/Door_Green.gif';
+import orangeDoor from '../../resources/Doors/Door_Orange.gif';
+import purpleDoor from '../../resources/Doors/Door_Purple.gif';
+import redDoor from '../../resources/Doors/Door_Red.gif';
+import turquoiseDoor from '../../resources/Doors/Door_Turquoise.gif';
+import yellowDoor from '../../resources/Doors/Door_Yellow.gif';
+
+import blueKey from '../../resources/Keys/Key_Blue.gif';
+import greenKey from '../../resources/Keys/Key_Green.gif';
+import orangeKey from '../../resources/Keys/Key_Orange.gif';
+import purpleKey from  '../../resources/Keys/Key_Purple.gif';
+import redKey from  '../../resources/Keys/Key_Red.gif';
+import turquoiseKey from '../../resources/Keys/Key_Turquoise.gif';
+import yellowKey from '../../resources/Keys/Key_Yellow.gif';
+
+import stoneWall from '../../resources/Walls/StoneWall.png';
+import stoneWallPeek from '../../resources/Walls/StoneWallPeek.gif';
+import woodWall from '../../resources/Walls/WoodWall.png';
+import stoneFloor1 from '../../resources/Floor/StoneFloor.png';
+import stoneFloor2 from '../../resources/Floor/StoneMosaicFloor1.png';
+import stoneFloor3 from '../../resources/Floor/StoneMosaicFloor2.png';
+
+import player from '../../resources/player/player.gif'
+
 const images = [
-    {id:1 , group:'door', src:'../../resources/Doors/Door_Blue.gif'},
-    {id:2 ,group:'door' , src:'../../src/resources/Doors/Door_Green.gif'},
-    {id:3 ,group:'door' , src:'../../src/resources/Doors/Door_Orange.gif'},
-    {id:4 ,group:'door' , src:'../../src/resources/Doors/Door_Purple.gif'},
-    {id:5 ,group:'door' , src:'../../src/resources/Doors/Door_Red.gif'},
-    {id:6 ,group:'door' , src:'../../src/resources/Doors/Door_Turquoise.gif'},
-    {id:7 ,group:'door' , src:'../../src/resources/Doors/Door_Yellow.gif'},
+    {group:'door', src:blueDoor},
+    {group:'door', src:greenDoor},
+    {group:'door', src:orangeDoor},
+    {group:'door', src:purpleDoor},
+    {group:'door', src:redDoor},
+    {group:'door', src:turquoiseDoor},
+    {group:'door', src:yellowDoor},
 
-    {id:8 ,group:'key' , src:'../../src/resources/Keys/Key_Blue.gif'},
-    {id:9 ,group:'key' , src:'../../src/resources/Keys/Key_Green.gif'},
-    {id:10 ,group:'key' , src:'../../src/resources/Keys/Key_Orange.gif'},
-    {id:11 ,group:'key' , src: '../../src/resources/Keys/Key_Purple.gif'},
-    {id:12 ,group:'key' , src: '../../src/resources/Keys/Key_Red.gif'},
-    {id:13 ,group:'key' , src:'../../src/resources/Keys/Key_Turquoise.gif'},
-    {id:14 ,group:'key' , src:'../../src/resources/Keys/Key_Yellow.gif'},
+    {group:'key', src:blueKey},
+    {group:'key', src:greenKey},
+    {group:'key', src:orangeKey},
+    {group:'key', src:purpleKey},
+    {group:'key', src:redKey},
+    {group:'key', src:turquoiseKey},
+    {group:'key', src:yellowKey},
 
-    {id:15 ,group:'wall' , src:'../../src/resources/Walls/StoneWall.png'},
-    {id:16,group:'wall' , src:'../../src/resources/Walls/StoneWallPeek.gif'},
-    {id:17 ,group:'wall' , src:'../../src/resources/Walls/WoodWall.png'},
+    {group:'wall', src:stoneWall},
+    {group:'wall', src:woodWall},
+    
+    {group:'floor', src:stoneFloor1},
+    {group:'floor', src:stoneFloor2},
+    {group:'floor', src:stoneFloor3},
 
-    {id:18 ,group:'floor' , src:'../../resources/Floor/StoneFloor.png'},
-    {id:19 ,group:'floor' , src:'../../resources/Floor/StoneMosaicFloor1.png'},
-    {id:20 ,group:'floor' , src:'../../resources/Floor/StoneMosaicFloor2.png'},
-
-    {id:21 ,group:'player', src:'../../resources/player/player.gif'},
+    {group:'animated wall', src:stoneWallPeek},
+    
+    {group:'player', src:player}
 ];
 
 export default images;
