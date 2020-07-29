@@ -1,4 +1,5 @@
 import {translateBitmap, blockType} from './mapUtilities.js';
+import {doors, keys } from '../resources';
 
 const lvl1Structure = [
     0xffffffff,
@@ -81,17 +82,17 @@ export const lvl1 = {
 	{x:960,y:160, triggered:false, type:blockType.trap},
     ],
     
-    locks:[
-	{x:96, y:128, color:'blue', type:blockType.lock},
-	{x:352,y:128, color:'orange', type:blockType.lock},
-	{x:224,y:288, color:'turquoise', type:blockType.lock},
-	{x:352,y:288, color:'blue', type:blockType.lock},
+    doors:[
+	{position:{x:96, y:128}, src:doors[0].src},
+	{position:{x:352,y:128}, src:doors[1].src},
+	{position:{x:224,y:288}, src:doors[2].src},
+	{position:{x:352,y:288}, src:doors[3].src},
     ],
     
     keys:[
-	{x:128, y:32, color:'blue', type:blockType.key},
-	{x:32, y:256, color:'orange', type:blockType.key},
-	{x:224, y:64, color:'red', type:blockType.key},
+	{position:{x:128, y:32}, src:keys[0].src},
+	{position:{x:32, y:256}, src:keys[1].src},
+	{position:{x:224, y:64}, src:keys[2].src},
     ],
     food:[
 	{x:64, y:64, image:'hotdog', type:blockType.food},

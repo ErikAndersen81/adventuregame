@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useContext, useState } from 'react';
 import PlayerCanvasContext from '../Context/PlayerCanvasContext.js';
-import { players } from '../Resources';
+import { players } from '../../resources';
 import PlayerContext from '../Context/PlayerContext.js';
 
 const Player = props => {
-    const player = players[1].src;
+    const player = players[0].src;
     const [spriteIdx, setSpriteIdx] = useState(0);
     let [x,y] = [props.position.x, props.position.y];
     const {moving, setMoving, direction} = useContext(PlayerContext);

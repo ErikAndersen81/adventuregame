@@ -8,7 +8,6 @@ const Block = props => {
     useEffect( () => {
 	const ctx = canvasRef.ref.current.getContext("2d");
 	const img = imgRef.current;
-	console.log(img);
 	ctx.drawImage(img, x, y);
 	
     },[canvasRef, x, y]);

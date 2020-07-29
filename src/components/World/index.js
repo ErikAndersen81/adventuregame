@@ -2,8 +2,8 @@ import React, {useState, useRef, useEffect, useContext } from 'react';
 import Player, { positionDelta } from '../Player';
 import Walls from '../Walls';
 import Floor from '../Floor';
-// import Doors from '../Doors';
-// import Keys from '../Keys';
+import Doors from '../Doors';
+import Keys from '../Keys';
 import CanvasContext from '../Context/CanvasContext.js';
 import PlayerCanvasContext from '../Context/PlayerCanvasContext.js';
 import PlayerContext from '../Context/PlayerContext.js';
@@ -80,6 +80,8 @@ const World = props => {
 		    height={props.level.width}/>
 	    <Walls blocks={props.level.walls} />
 	    <Floor blocks={props.level.floor} />
+	    <Doors blocks={props.level.doors} />
+	    <Keys blocks={props.level.keys} />
 	  </CanvasContext.Provider>
 	  <PlayerCanvasContext.Provider value={{ref:playerCanvasRef, position:canvasOffset}} >
 	    <Player position={playerPosition}
