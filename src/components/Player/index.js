@@ -1,9 +1,10 @@
 import React, { useRef, useEffect, useContext, useState } from 'react';
 import PlayerCanvasContext from '../Context/PlayerCanvasContext.js';
-import { player } from '../Resources';
+import { players } from '../Resources';
 import PlayerContext from '../Context/PlayerContext.js';
 
 const Player = props => {
+    const player = players[1].src;
     const [spriteIdx, setSpriteIdx] = useState(0);
     let [x,y] = [props.position.x, props.position.y];
     const {moving, setMoving, direction} = useContext(PlayerContext);
@@ -46,7 +47,7 @@ const Player = props => {
     useEffect(animateSprite, [spriteIdx, moving]);
     return (
 	    <img alt=""
-		 src={player.src}
+		 src={player}
 		 ref={imgRef}
 		 />
     );

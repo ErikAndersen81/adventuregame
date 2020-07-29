@@ -22,6 +22,7 @@ import stoneFloor2 from '../../resources/Floor/StoneMosaicFloor1.png';
 import stoneFloor3 from '../../resources/Floor/StoneMosaicFloor2.png';
 
 import player from '../../resources/player/player.gif'
+import player1 from '../../resources/player/Player1.gif'
 
 const images = [
     {group:'door', src:blueDoor},
@@ -49,7 +50,8 @@ const images = [
 
     {group:'animated wall', src:stoneWallPeek},
     
-    {group:'player', src:player}
+    {group:'player', src:player},
+    {group:'player', src:player1},
 ];
 
 export default images;
