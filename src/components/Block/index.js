@@ -4,18 +4,15 @@ import CanvasContext from '../Context/CanvasContext.js';
 const Block = props => {
     let {x, y} = props.position;
     const imgRef = useRef(null);
-    const canvasRef = useContext(CanvasContext);
+    const { objectsRef:ref } = useContext(CanvasContext);
     useEffect( () => {
-	const ctx = canvasRef.ref.current.getContext("2d");
+	const ctx = ref.current.getContext("2d");
 	const img = imgRef.current;
-	console.log(img);
-	ctx.drawImage(img, x, y);
-	
-    },[canvasRef, x, y]);
+	ctx.drawImage(img, x, y);	
+    },[ref, x, y]);
     
     return (
 	<img src={props.resource}
-	     className="mapObject"
 	     ref={imgRef}
 	     alt=""/>
     );

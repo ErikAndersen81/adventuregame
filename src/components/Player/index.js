@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useContext, useState } from 'react';
-import PlayerCanvasContext from '../Context/PlayerCanvasContext.js';
+import CanvasContext from '../Context/CanvasContext.js';
 import { players } from '../../resources';
 import PlayerContext from '../Context/PlayerContext.js';
 
@@ -11,10 +11,10 @@ const Player = props => {
     const {sx, sy} = spriteOffset(spriteIdx, direction);
     const {dx, dy} = positionDelta(direction);
     const imgRef = useRef(null);
-    const canvasRef = useContext(PlayerCanvasContext);
+    const { playerRef:canvasRef } = useContext(CanvasContext);
     
     const draw = () => {
-	const ctx = canvasRef.ref.current.getContext("2d");
+	const ctx = canvasRef.current.getContext("2d");
 	const img = imgRef.current;
 	ctx.clearRect(x-4, y-4, 42, 42);
 	ctx.drawImage(img, sx*moving, sy, 32, 32, x, y, 32, 32);
@@ -26,7 +26,7 @@ const Player = props => {
 	    props.setPosition({x:x+dx, y:y+dy});
 	}
 	if (moving) {
-	    if (props.collisionCheck()) setMoving(false);
+	    if (props.collisionCheck({x:x+dx, y:y+dy})) setMoving(false);
 	    else setTimeout(move, 10);
 	} else clearTimeout(move);
     }
@@ -71,7 +71,5 @@ const positionDelta = (direction) => {
     if (direction === 'up' || direction === 'down') return {dx:0,dy:coord};
     return {dx:coord,dy:0};
 }
-
-export { positionDelta };
 
 export default Player;

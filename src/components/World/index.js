@@ -1,30 +1,27 @@
 import React, {useState, useRef, useEffect, useContext } from 'react';
-import Player, { positionDelta } from '../Player';
+import Player from '../Player';
 import Walls from '../Walls';
 import Floor from '../Floor';
 import Doors from '../Doors';
 import Keys from '../Keys';
 import CanvasContext from '../Context/CanvasContext.js';
-import PlayerCanvasContext from '../Context/PlayerCanvasContext.js';
 import PlayerContext from '../Context/PlayerContext.js';
 
 const World = props => {    
     const [playerPosition, setPlayerPosition] = useState(props.level.spawnPoint);
     const [canvasOffset, setCanvasOffset] = useState({x:0,y:0});
-    const {direction} = useContext(PlayerContext);
-    const wallCenters = props.level.walls.map(pos => {return {x:pos.x+16, y:pos.y+16}})
+    const { direction } = useContext(PlayerContext);
     
-    const collisionCheck = () => {
-	let {x,y} = {x:playerPosition.x+16, y:playerPosition.y+16};
-	let {dx, dy} = positionDelta(direction);
-	let playerNextPos = {x:x+dx, y:y+dy}
-	let proximate = getProximate(playerNextPos, wallCenters);
+    const collisionCheck = (playerNextPos) => {
+	let proximate = getProximate(playerNextPos, props.level.walls);
 	let collisions = proximate.map(block => collides(playerNextPos, block));
 	return collisions.includes(true);
     }
 
-    const canvasRef = useRef(null);
+    const backgroundCanvasRef = useRef(null);
+    const objectsCanvasRef = useRef(null);
     const playerCanvasRef = useRef(null);
+    
     
     const moveCanvases = (canvases, delta) => {
 	canvases.forEach( canvasRef => {
@@ -46,8 +43,8 @@ const World = props => {
 
     const getCanvasDelta = () => {
 	var delta = {x:0, y:0};
-	let height = canvasRef.current.clientHeight;
-	let width = canvasRef.current.clientWidth;
+	let height = backgroundCanvasRef.current.clientHeight;
+	let width = backgroundCanvasRef.current.clientWidth;
 	if (playerPosition.x + canvasOffset.x > width-64) {
 	    delta.x = -width/2;
 	} else if (playerPosition.x + canvasOffset.x <= 64) {
@@ -63,7 +60,7 @@ const World = props => {
     const calibrateView = () => {
 	let delta = getCanvasDelta();
 	if (delta.x+delta.y === 0 || canvasOverflow(delta)) return;
-	moveCanvases([canvasRef, playerCanvasRef], delta);
+	moveCanvases([backgroundCanvasRef, objectsCanvasRef, playerCanvasRef], delta);
     }
 
 
@@ -71,8 +68,11 @@ const World = props => {
     
     return (
 	<>
-	  <CanvasContext.Provider value={{ref:canvasRef}} >
-	    <canvas ref={canvasRef}
+	  <CanvasContext.Provider value={{backgroundRef:backgroundCanvasRef, objectsRef:objectsCanvasRef, playerRef:playerCanvasRef}} >	    
+	    <canvas ref={backgroundCanvasRef}
+		    width={props.level.width}
+		    height={props.level.height}/>
+	    <canvas ref={objectsCanvasRef}
 		    width={props.level.width}
 		    height={props.level.height}/>
 	    <canvas ref={playerCanvasRef}
@@ -82,14 +82,12 @@ const World = props => {
 	    <Floor blocks={props.level.floor} />
 	    <Doors blocks={props.level.doors} />
 	    <Keys blocks={props.level.keys} />
-	  </CanvasContext.Provider>
-	  <PlayerCanvasContext.Provider value={{ref:playerCanvasRef, position:canvasOffset}} >
 	    <Player position={playerPosition}
 		    setPosition={setPlayerPosition}
 		    direction={direction}
 		    collisionCheck={collisionCheck}
 		    />
-	  </PlayerCanvasContext.Provider>
+	  </CanvasContext.Provider>
 	</>
     ); 
 }
