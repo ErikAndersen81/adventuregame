@@ -29,13 +29,13 @@ const World = props => {
 	    ctx.clearRect(0,0,props.level.width, props.level.height);
 	    ctx.translate(delta.x, delta.y);
 	});
-	setCanvasOffset({x:canvasOffset.x+delta.x,
-			   y:canvasOffset.y+delta.y});
+	setCanvasOffset({x:canvasOffset.x+delta.x,	
+			   y:canvasOffset.y+delta.y});			
     }
 
     const canvasOverflow = (delta) => {
-	if (props.level.width + canvasOffset.x < 0
-	    || canvasOffset.x+delta.x > 0
+	if (props.level.width + canvasOffset.x < 0	
+	    || canvasOffset.x+delta.x > 0	
 	    || props.level.height + canvasOffset.y < 0
 	    || canvasOffset.y+delta.y > 0) return true;
 	return false;
