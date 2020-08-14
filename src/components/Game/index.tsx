@@ -3,25 +3,25 @@ import Controller from '../Controller';
 import PlayerInfo, {HealthBar} from '../PlayerInfo';
 import { PlayerContext } from '../Context';
 import World from '../World';
+import { LevelI, PlayerContextI } from '../../common/types';
 
-interface GameProps {
-    level:object,
-}
-
-const Game = (props:GameProps) => {
+const Game = (props:{level:LevelI}) => {
     const [playerMoving, setPlayerMoving] = useState(false);
     const [playerDirection, setPlayerDirection] = useState("down");
-    
-    const playerCtx = {
-	moving:playerMoving,
-	setMoving:setPlayerMoving,
-	direction:playerDirection,
-	setDirection:setPlayerDirection,
-    }
-    console.log("testing");
+	const [playerPosition, setPlayerPosition] = useState(props.level.spawnPoint);
+	
+    const playerCtx:PlayerContextI = {
+		moving:playerMoving,
+		setMoving:setPlayerMoving,
+		direction:playerDirection,
+		setDirection:setPlayerDirection,
+		position:playerPosition,
+		setPosition:setPlayerPosition
+	}
+	
     return (
 	<PlayerContext.Provider value={playerCtx}>
-	    <World level={props.level} />
+	    <World {...props.level} />
 	    <div className="w3-content overlay">
 	      <HealthBar />
 	      <Controller />
