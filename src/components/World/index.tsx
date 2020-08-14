@@ -120,7 +120,7 @@ const getProximate = (playerPosition:CoordinatesI, blocksPosition:Array<Coordina
 }
 
 const collides = (A:CoordinatesI, B:CoordinatesI) => {
-    return (Math.abs(A.x-B.x) < 28) && (Math.abs(A.y-B.y)<31);
+    return (Math.abs(A.x-B.x) < 22) && (Math.abs(A.y-B.y)<22);
 }
 
 export default World;

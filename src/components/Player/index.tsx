@@ -9,7 +9,7 @@ interface PlayerProps {
 }
 
 const Player = (props:PlayerProps) => {   
-    const player = players[0].src;
+    const player = players[2].src;
     const [spriteIdx, setSpriteIdx] = useState(0);
     const {moving, setMoving, direction, position, setPosition} = useContext(PlayerContext);
     const imgRef = useRef(null);

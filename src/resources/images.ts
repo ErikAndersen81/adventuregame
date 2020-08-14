@@ -21,8 +21,9 @@ import stoneFloor1 from './Floor/StoneFloor.png';
 import stoneFloor2 from './Floor/StoneMosaicFloor1.png';
 import stoneFloor3 from './Floor/StoneMosaicFloor2.png';
 
-import player from './player/player.gif'
-import player1 from './player/Player1.gif'
+import player from './player/player.gif';
+import player1 from './player/Player1.gif';
+import player2 from './player/Player_Boy.gif';
 
 const images:Array<{group:string, src:string}> = [
     {group:'door', src:blueDoor},
@@ -52,6 +53,7 @@ const images:Array<{group:string, src:string}> = [
     
     {group:'player', src:player},
     {group:'player', src:player1},
+    {group:'player', src:player2}
 ];
 
 export default images;
