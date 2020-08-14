@@ -24,6 +24,7 @@
     "src/components/**/*.ts",
     "src/components/**/*.tsx",
     "src/resources/declarations.d.ts",
-    "src/levels/*.ts"
+    "src/levels/*.ts",
+    "src/*.tsx"
   ]
 }
