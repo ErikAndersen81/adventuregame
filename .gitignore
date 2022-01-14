@@ -24,3 +24,5 @@ yarn-error.log*
 
 *.*~
 *.xcf
+*.js
+*.js.map
