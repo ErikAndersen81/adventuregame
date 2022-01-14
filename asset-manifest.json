@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/adventure-game/static/css/main.810bfba3.chunk.css",
+    "main.js": "/adventure-game/static/js/main.8b35d6d1.chunk.js",
+    "main.js.map": "/adventure-game/static/js/main.8b35d6d1.chunk.js.map",
+    "runtime~main.js": "/adventure-game/static/js/runtime~main.30c1a54e.js",
+    "runtime~main.js.map": "/adventure-game/static/js/runtime~main.30c1a54e.js.map",
+    "static/js/2.83522677.chunk.js": "/adventure-game/static/js/2.83522677.chunk.js",
+    "static/js/2.83522677.chunk.js.map": "/adventure-game/static/js/2.83522677.chunk.js.map",
+    "index.html": "/adventure-game/index.html",
+    "precache-manifest.3d9a2d39312739699bf05529ad9edf1b.js": "/adventure-game/precache-manifest.3d9a2d39312739699bf05529ad9edf1b.js",
+    "service-worker.js": "/adventure-game/service-worker.js",
+    "static/css/main.810bfba3.chunk.css.map": "/adventure-game/static/css/main.810bfba3.chunk.css.map",
+    "static/media/index.css": "/adventure-game/static/media/darktile.eba854d9.gif"
+  }
+}
