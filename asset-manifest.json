@@ -1,16 +1,13 @@
 {
   "files": {
-    "main.css": "/adventuregame/static/css/main.56dae07b.chunk.css",
-    "main.js": "/adventuregame/static/js/main.8b35d6d1.chunk.js",
-    "main.js.map": "/adventuregame/static/js/main.8b35d6d1.chunk.js.map",
-    "runtime~main.js": "/adventuregame/static/js/runtime~main.1c4df46f.js",
-    "runtime~main.js.map": "/adventuregame/static/js/runtime~main.1c4df46f.js.map",
-    "static/js/2.83522677.chunk.js": "/adventuregame/static/js/2.83522677.chunk.js",
-    "static/js/2.83522677.chunk.js.map": "/adventuregame/static/js/2.83522677.chunk.js.map",
+    "main.css": "/adventuregame/static/css/main.89804800.css",
+    "main.js": "/adventuregame/static/js/main.1400cdb6.js",
     "index.html": "/adventuregame/index.html",
-    "precache-manifest.a2c5d702c6d084b444b98b70d380e29c.js": "/adventuregame/precache-manifest.a2c5d702c6d084b444b98b70d380e29c.js",
-    "service-worker.js": "/adventuregame/service-worker.js",
-    "static/css/main.56dae07b.chunk.css.map": "/adventuregame/static/css/main.56dae07b.chunk.css.map",
-    "static/media/index.css": "/adventuregame/static/media/darktile.eba854d9.gif"
-  }
+    "main.89804800.css.map": "/adventuregame/static/css/main.89804800.css.map",
+    "main.1400cdb6.js.map": "/adventuregame/static/js/main.1400cdb6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.89804800.css",
+    "static/js/main.1400cdb6.js"
+  ]
 }
