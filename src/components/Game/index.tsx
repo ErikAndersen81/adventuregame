@@ -5,7 +5,10 @@ import { PlayerContext } from '../Context';
 import World from '../World';
 import { LevelI, PlayerContextI } from '../../common/types';
 
-const Game = (props:{level:LevelI}) => {
+/** The Game Component
+* @param {LevelI} [level] -  The level to play 
+*/
+const Game = (props:{level:LevelI}): JSX.Element => {
     const [playerMoving, setPlayerMoving] = useState(false);
     const [playerDirection, setPlayerDirection] = useState("down");
 	const [playerPosition, setPlayerPosition] = useState(props.level.spawnPoint);

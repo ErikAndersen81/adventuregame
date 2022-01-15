@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useContext, useState } from 'react';
-import CanvasContext from '../Context/CanvasContext.js';
+import CanvasContext from '../Context/CanvasContext';
 import { players } from '../../resources';
-import PlayerContext from '../Context/PlayerContext.js';
+import PlayerContext from '../Context/PlayerContext';
 import {animateMovement, animateMovementParameters, spriteOffset, collisionCheck, positionDelta, animateSpriteParams, animateSprite } from './animation';
 
 interface PlayerProps {

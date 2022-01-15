@@ -1,4 +1,4 @@
-import {translateBitmap } from './mapUtilities.js';
+import {translateBitmap } from './mapUtilities';
 import {doors, keys, walls, floors } from '../resources';
 import { LevelI, objectType } from '../common/types'
 

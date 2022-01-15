@@ -4,8 +4,8 @@ import Walls from '../Walls';
 import Floor from '../Floor';
 import Doors from '../Doors';
 import Keys from '../Keys';
-import CanvasContext from '../Context/CanvasContext.js';
-import PlayerContext from '../Context/PlayerContext.js';
+import CanvasContext from '../Context/CanvasContext';
+import PlayerContext from '../Context/PlayerContext';
 
 import { LevelI, CoordinatesI } from '../../common/types';
 

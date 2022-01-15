@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useRef } from 'react';
-import CanvasContext from '../Context/CanvasContext.js';
+import CanvasContext from '../Context/CanvasContext';
 import { MapObjectI } from '../../common/types';
 
 const Block = (props:MapObjectI) => {

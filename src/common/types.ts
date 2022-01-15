@@ -44,4 +44,4 @@ export interface CanvasContextI {
     backgroundRef: React.RefObject<HTMLCanvasElement>|null;
 };
 
-export type setValue<T>= (value:T) => void;
+export type setValue<T> = (value:T) => void;

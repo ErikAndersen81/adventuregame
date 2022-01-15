@@ -1,6 +1,6 @@
 import React, { useContext, MouseEvent } from 'react';
 import '../../css/controller.css';
-import PlayerContext from '../Context/PlayerContext.js';
+import PlayerContext from '../Context/PlayerContext';
 
 
 const Controller = () => {
