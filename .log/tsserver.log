@@ -1,0 +1,74 @@
+Info 0    [17:51:42.644] Starting TS Server
+Info 1    [17:51:42.645] Version: 4.5.4
+Info 2    [17:51:42.645] Arguments: /usr/bin/node /home/erik/.emacs.d/.cache/lsp/npm/typescript/lib/node_modules/typescript/lib/tsserver.js --logFile /home/erik/adventuregame/.log/tsserver.log --logVerbosity info --cancellationPipeName /tmp/02edfce350c4b75fc97d4a553fe65fd1/tscancellation*
+Info 3    [17:51:42.645] Platform: linux NodeVersion: 17 CaseSensitive: true
+Info 4    [17:51:42.645] ServerMode: undefined syntaxOnly: false hasUnknownServerMode: undefined
+Info 5    [17:51:42.679] Format host information updated
+Info 6    [17:51:42.687] Search path: /home/erik/adventuregame/src/components/Game
+Info 7    [17:51:42.689] For info: /home/erik/adventuregame/src/components/Game/index.tsx :: Config file name: /home/erik/adventuregame/tsconfig.json
+Info 8    [17:51:42.690] Creating configuration project /home/erik/adventuregame/tsconfig.json
+Info 9    [17:51:42.754] Config: /home/erik/adventuregame/tsconfig.json : {
+ "rootNames": [
+  "/home/erik/adventuregame/src/components/Player/animation.ts",
+  "/home/erik/adventuregame/src/components/Block/index.tsx",
+  "/home/erik/adventuregame/src/components/Blocks/index.tsx",
+  "/home/erik/adventuregame/src/components/Context/CanvasContext.tsx",
+  "/home/erik/adventuregame/src/components/Context/PlayerContext.tsx",
+  "/home/erik/adventuregame/src/components/Context/index.tsx",
+  "/home/erik/adventuregame/src/components/Controller/index.tsx",
+  "/home/erik/adventuregame/src/components/Doors/index.tsx",
+  "/home/erik/adventuregame/src/components/Floor/index.tsx",
+  "/home/erik/adventuregame/src/components/Game/index.tsx",
+  "/home/erik/adventuregame/src/components/Keys/index.tsx",
+  "/home/erik/adventuregame/src/components/Player/index.tsx",
+  "/home/erik/adventuregame/src/components/PlayerInfo/index.tsx",
+  "/home/erik/adventuregame/src/components/Walls/index.tsx",
+  "/home/erik/adventuregame/src/components/World/index.tsx",
+  "/home/erik/adventuregame/src/resources/declarations.d.ts",
+  "/home/erik/adventuregame/src/levels/index.ts",
+  "/home/erik/adventuregame/src/levels/mapUtilities.ts",
+  "/home/erik/adventuregame/src/index.tsx"
+ ],
+ "options": {
+  "target": 99,
+  "sourceMap": true,
+  "lib": [
+   "lib.dom.d.ts",
+   "lib.dom.iterable.d.ts",
+   "lib.esnext.d.ts"
+  ],
+  "allowJs": false,
+  "skipLibCheck": true,
+  "esModuleInterop": true,
+  "allowSyntheticDefaultImports": true,
+  "strict": true,
+  "forceConsistentCasingInFileNames": true,
+  "module": 99,
+  "moduleResolution": 2,
+  "resolveJsonModule": true,
+  "isolatedModules": true,
+  "jsx": 2,
+  "noEmit": true,
+  "configFilePath": "/home/erik/adventuregame/tsconfig.json"
+ }
+}
+Info 10   [17:51:42.884] Starting updateGraphWorker: Project: /home/erik/adventuregame/tsconfig.json
+Info 11   [17:51:47.319] Finishing updateGraphWorker: Project: /home/erik/adventuregame/tsconfig.json Version: 1 structureChanged: true structureIsReused:: Not Elapsed: 4433.799943000078ms
+Info 12   [17:51:47.319] Project '/home/erik/adventuregame/tsconfig.json' (Configured)
+Info 13   [17:51:47.319] 	Files (169)
+
+Info 14   [17:51:47.319] -----------------------------------------------
+Info 15   [17:51:47.340] Starting updateGraphWorker: Project: /dev/null/autoImportProviderProject1*
+Info 16   [17:51:47.574] Finishing updateGraphWorker: Project: /dev/null/autoImportProviderProject1* Version: 1 structureChanged: true structureIsReused:: Not Elapsed: 234.15779200196266ms
+Info 17   [17:51:47.574] Project '/dev/null/autoImportProviderProject1*' (AutoImportProvider)
+Info 18   [17:51:47.574] 	Files (52)
+
+Info 19   [17:51:47.574] -----------------------------------------------
+Info 20   [17:51:49.140] Search path: /home/erik/adventuregame/src
+Info 21   [17:51:49.141] For info: /home/erik/adventuregame/src/index.tsx :: Config file name: /home/erik/adventuregame/tsconfig.json
+Info 22   [17:52:28.679] Starting updateGraphWorker: Project: /home/erik/adventuregame/tsconfig.json
+Info 23   [17:52:28.715] Finishing updateGraphWorker: Project: /home/erik/adventuregame/tsconfig.json Version: 2 structureChanged: false structureIsReused:: Completely Elapsed: 35.52561300992966ms
+Info 24   [17:52:28.715] Different program with same set of files
+Info 25   [17:52:30.052] Starting updateGraphWorker: Project: /home/erik/adventuregame/tsconfig.json
+Info 26   [17:52:30.080] Finishing updateGraphWorker: Project: /home/erik/adventuregame/tsconfig.json Version: 3 structureChanged: false structureIsReused:: Completely Elapsed: 28.115624994039536ms
+Info 27   [17:52:30.080] Different program with same set of files
